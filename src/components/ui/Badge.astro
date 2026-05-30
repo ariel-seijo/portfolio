@@ -1,0 +1,42 @@
+---
+import { cn } from "@utils/cn";
+
+export interface Props {
+  class?: string;
+  variant?: "default" | "accent";
+}
+
+const { class: className, variant = "default" } = Astro.props;
+---
+
+<span class={cn("badge", `badge-${variant}`, className)}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .badge-default {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-tertiary);
+    border: 1px solid var(--color-border-default);
+  }
+
+  .badge-accent {
+    background: var(--color-accent-muted);
+    color: var(--color-accent-hover);
+    border: 1px solid rgb(139 92 246 / 0.15);
+  }
+</style>
