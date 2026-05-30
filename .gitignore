@@ -20,5 +20,8 @@ Thumbs.db
 # Astro
 .astro/
 
+# Vercel
+.vercel/
+
 # TypeScript
 *.tsbuildinfo
