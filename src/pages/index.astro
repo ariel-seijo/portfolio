@@ -1,0 +1,29 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/sections/Hero.astro";
+import Projects from "@components/sections/Projects.astro";
+import Stack from "@components/sections/Stack.astro";
+import Experience from "@components/sections/Experience.astro";
+import Contact from "@components/sections/Contact.astro";
+---
+
+<BaseLayout
+  title="Ariel Seijo — Full Stack Engineer"
+  description="Arquitectura que convierte complejidad en producto. Especialista en sistemas financieros y plataformas de alto tráfico."
+>
+  <Hero />
+  <Projects />
+  <Stack />
+  <Experience />
+  <Contact />
+</BaseLayout>
+
+<script>
+  import { initFullscreenNav } from "@hooks/useFullscreenNav";
+  import { initLightBorder } from "@hooks/useLightBorder";
+
+  initFullscreenNav();
+  initLightBorder();
+</script>

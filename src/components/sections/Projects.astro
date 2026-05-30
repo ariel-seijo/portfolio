@@ -1,0 +1,224 @@
+---
+import SectionTransition from "@components/ui/SectionTransition.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+import Card from "@components/ui/Card.astro";
+import Tag from "@components/ui/Tag.astro";
+import Badge from "@components/ui/Badge.astro";
+import Button from "@components/ui/Button.astro";
+
+// Placeholder projects
+const projects = [
+  {
+    title: "Plataforma de Procesamiento de Pagos",
+    description:
+      "Arquitectura event-driven para procesamiento de transacciones en tiempo real con tolerancia a fallos y auditoría completa.",
+    metrics: [
+      "40% reducción de latencia",
+      "99.99% uptime en producción",
+      "+2M transacciones/día",
+    ],
+    stack: ["Go", "Kafka", "PostgreSQL", "Redis", "Kubernetes", "gRPC"],
+    repo: "https://github.com/ariel-seijo/payment-platform",
+    demo: "https://payments-demo.vercel.app",
+  },
+  {
+    title: "Sistema de Matching de Órdenes HFT",
+    description:
+      "Motor de matching de alta frecuencia con procesamiento sub-milisegundo, circuit breakers y balanceo dinámico de carga.",
+    metrics: [
+      "Latencia p99 < 200µs",
+      "+5M órdenes por hora",
+      "Cobertura de tests 94%",
+    ],
+    stack: ["Rust", "Go", "Redis", "Kafka", "PostgreSQL", "Docker"],
+    repo: "https://github.com/ariel-seijo/hft-engine",
+    demo: null,
+  },
+  {
+    title: "Dashboard de Monitoreo Financiero",
+    description:
+      "Panel de observabilidad con métricas en tiempo real, alertas predictivas y trazabilidad end-to-end para operaciones financieras.",
+    metrics: [
+      "+50% detección de anomalías",
+      "Reducción MTTR en 60%",
+      "Dashboards personalizados",
+    ],
+    stack: ["Next.js", "TypeScript", "D3.js", "WebSocket", "Go", "Grafana"],
+    repo: "https://github.com/ariel-seijo/financial-dashboard",
+    demo: "https://dashboard-demo.vercel.app",
+  },
+] as const;
+---
+
+<SectionTransition sectionId="projects">
+  <div class="section-inner scrollable-inner">
+    <SectionHeading
+      title="Proyectos"
+      subtitle="Sistemas complejos que procesan operaciones reales en producción."
+    />
+
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <Card class="project-card">
+          <!-- Preview placeholder -->
+          <div class="project-preview">
+            <div class="preview-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="project-info">
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-desc">{project.description}</p>
+
+            <!-- Metrics -->
+            <ul class="project-metrics">
+              {project.metrics.map((m) => (
+                <li class="project-metric">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {m}
+                </li>
+              ))}
+            </ul>
+
+            <!-- Tags -->
+            <div class="project-tags">
+              {project.stack.map((tech) => (
+                <Tag size="sm" color="accent">{tech}</Tag>
+              ))}
+            </div>
+
+            <!-- Links -->
+            <div class="project-links">
+              <Button variant="outlined" size="sm" href={project.repo} target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                  <path d="M9 18c-4.51 2-5-2-7-2"/>
+                </svg>
+                Repo
+              </Button>
+              {project.demo && (
+                <Button variant="ghost" size="sm" href={project.demo} target="_blank" rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" x2="21" y1="14" y2="3"/>
+                  </svg>
+                  Demo
+                </Button>
+              )}
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</SectionTransition>
+
+<style>
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-8);
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .project-preview {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--color-bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--color-border-default);
+    height: 100%;
+  }
+
+  .preview-placeholder {
+    color: var(--color-text-tertiary);
+    opacity: 0.3;
+  }
+
+  .project-info {
+    padding: var(--space-6);
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .project-title {
+    font-size: var(--text-h2);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: var(--text-body-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .project-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .project-metric {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-caption);
+    color: var(--color-success);
+    font-weight: 500;
+  }
+
+  .project-metric svg {
+    flex-shrink: 0;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .project-links {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 1023px) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+
+    .project-preview {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border-default);
+      aspect-ratio: 16 / 9;
+    }
+
+    .project-info {
+      padding: var(--space-6);
+      padding-top: 0;
+    }
+  }
+</style>

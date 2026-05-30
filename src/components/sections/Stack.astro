@@ -1,0 +1,150 @@
+---
+import SectionTransition from "@components/ui/SectionTransition.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+import Badge from "@components/ui/Badge.astro";
+import { STACK } from "@data/stack";
+
+const categories = [
+  { key: "frontend", label: "Frontend" },
+  { key: "backend", label: "Backend" },
+  { key: "infra", label: "Infraestructura" },
+  { key: "databases", label: "Bases de Datos" },
+  { key: "core", label: "Prácticas Core" },
+] as const;
+---
+
+<SectionTransition sectionId="stack">
+  <div class="section-inner">
+    <SectionHeading
+      title="Stack"
+      subtitle="Tecnologías con las que trabajo a diario. Sin barras de porcentaje — solo contexto real."
+    />
+
+    <div class="stack-grid">
+      {
+        categories.map((cat) => (
+          <div class="stack-category">
+            <h3 class="stack-cat-title">{cat.label}</h3>
+            <ul class="stack-list">
+              {STACK[cat.key].map((tech) => (
+                <li class="stack-item">
+                  <div class="stack-item-main">
+                    <span class="stack-tech-name">{tech.name}</span>
+                    <span class="stack-tech-meta">
+                      {tech.years} {tech.years === 1 ? "año" : "años"}
+                    </span>
+                  </div>
+                  {tech.production && (
+                    <Badge variant="accent">Prod</Badge>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</SectionTransition>
+
+<style>
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  /* "Prácticas Core" ocupa full width */
+  .stack-grid .stack-category:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .stack-category {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .stack-cat-title {
+    font-size: var(--text-caption);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-1);
+  }
+
+  .stack-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 8px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    transition: border-color 0.2s var(--ease-in-out-circ);
+  }
+
+  .stack-item:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .stack-item-main {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+
+  .stack-tech-name {
+    font-size: var(--text-body-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .stack-tech-meta {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-tertiary);
+  }
+
+  /* Full-width core section */
+  .stack-grid .stack-category:last-child .stack-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 1023px) {
+    .stack-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stack-grid .stack-category:last-child {
+      grid-column: span 2;
+    }
+
+    .stack-grid .stack-category:last-child .stack-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stack-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stack-grid .stack-category:last-child {
+      grid-column: span 1;
+    }
+
+    .stack-grid .stack-category:last-child .stack-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import SectionTransition from "@components/ui/SectionTransition.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+import Button from "@components/ui/Button.astro";
+import Input from "@components/ui/Input.astro";
+import SocialLinks from "@components/shared/SocialLinks.astro";
+import { SOCIAL_LINKS } from "@data/social";
+---
+
+<SectionTransition sectionId="contact">
+  <div class="section-inner">
+    <SectionHeading
+      title="Contacto"
+      subtitle="¿Construimos algo que mueva dinero real?"
+      align="center"
+    />
+
+    <div class="contact-grid">
+      <!-- Form -->
+      <form class="contact-form" method="POST" action="/api/contact">
+        <Input name="name" label="Nombre" placeholder="Tu nombre" required />
+        <Input name="email" type="email" label="Email" placeholder="tu@email.com" required />
+        <Input
+          name="message"
+          type="textarea"
+          label="Mensaje"
+          placeholder="Contame sobre tu proyecto, equipo o idea..."
+          rows={5}
+          required
+        />
+
+        <Button variant="filled" size="lg" class="contact-submit" type="submit">
+          Enviar Mensaje
+        </Button>
+
+        <p class="contact-note">
+          También podés escribirme directamente a{" "}
+          <a href="mailto:arielseijo@outlook.com" class="contact-email-link">
+            arielseijo@outlook.com
+          </a>
+        </p>
+      </form>
+
+      <!-- Direct links -->
+      <aside class="contact-direct">
+        <SocialLinks links={SOCIAL_LINKS} />
+
+        <div class="contact-cv">
+          <Button variant="outlined" size="md" href="/cv.pdf" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" x2="12" y1="15" y2="3"/>
+            </svg>
+            Descargar CV
+          </Button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</SectionTransition>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--space-16);
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .contact-submit {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+  }
+
+  .contact-note {
+    font-size: var(--text-caption);
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-2);
+  }
+
+  .contact-email-link {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .contact-email-link:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .contact-direct {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-top: var(--space-2);
+  }
+
+  .contact-cv {
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border-default);
+  }
+
+  @media (max-width: 1023px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .contact-direct {
+      padding-top: 0;
+    }
+  }
+</style>
