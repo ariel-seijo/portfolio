@@ -1,0 +1,266 @@
+---
+import { NAV_LINKS, SITE } from "@data/site";
+---
+
+<header class="navbar" role="banner">
+  <div class="navbar-inner">
+    <!-- Logo / Name -->
+    <a href="#hero" class="navbar-brand" aria-label={`${SITE.name} — Inicio`}>
+      <span class="navbar-dot" aria-hidden="true"></span>
+      <span class="navbar-name">{SITE.name}</span>
+      <span class="navbar-role">{SITE.title}</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="navbar-nav" role="navigation" aria-label="Navegación principal">
+      <ul class="navbar-links">
+        {
+          NAV_LINKS.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="navbar-link"
+                data-section={link.id}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button
+      class="navbar-menu-btn"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      id="menu-toggle"
+    >
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
+  </div>
+
+  <!-- Progress bar -->
+  <div
+    class="navbar-progress"
+    role="progressbar"
+    aria-valuenow="0"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-label="Progreso de lectura"
+  >
+    <div class="navbar-progress-fill" id="progress-fill"></div>
+  </div>
+</header>
+
+<!-- Mobile overlay -->
+<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true">
+  <nav class="mobile-nav" aria-label="Menú móvil">
+    <ul class="mobile-nav-links">
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="mobile-nav-link"
+              data-section={link.id}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: var(--navbar-height);
+  }
+
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 var(--content-padding);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: var(--color-bg-glass);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  /* Brand */
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text-primary);
+  }
+
+  .navbar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .navbar-name {
+    font-weight: 600;
+    font-size: var(--text-body);
+    letter-spacing: -0.01em;
+  }
+
+  .navbar-role {
+    font-size: var(--text-caption);
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+    padding-left: var(--space-2);
+    border-left: 1px solid var(--color-border-default);
+  }
+
+  /* Desktop links */
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .navbar-link {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-body-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border-radius: 8px;
+    transition: color 0.15s var(--ease-in-out-circ),
+      background 0.15s var(--ease-in-out-circ);
+  }
+
+  .navbar-link:hover,
+  .navbar-link[aria-current="true"] {
+    color: var(--color-text-primary);
+  }
+
+  .navbar-link[aria-current="true"] {
+    background: var(--color-accent-muted);
+  }
+
+  /* Progress bar */
+  .navbar-progress {
+    height: 1px;
+    background: var(--color-border-default);
+  }
+
+  .navbar-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent);
+    transition: width 0.3s var(--ease-out-expo);
+  }
+
+  /* Mobile menu button */
+  .navbar-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-2);
+    border-radius: 8px;
+  }
+
+  .menu-bar {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--color-text-primary);
+    border-radius: 1px;
+    transition: transform 0.2s var(--ease-out-expo),
+      opacity 0.2s var(--ease-out-expo);
+  }
+
+  .navbar-menu-btn[aria-expanded="true"] .menu-bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .navbar-menu-btn[aria-expanded="true"] .menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar-menu-btn[aria-expanded="true"] .menu-bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile overlay */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background: var(--color-bg-primary);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out-expo);
+  }
+
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .mobile-nav-link {
+    font-size: var(--text-h2);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color 0.15s var(--ease-in-out-circ);
+  }
+
+  .mobile-nav-link:focus,
+  .mobile-nav-link[aria-current="true"] {
+    color: var(--color-accent);
+  }
+
+  /* Mobile */
+  @media (max-width: 1023px) {
+    .navbar-nav {
+      display: none;
+    }
+
+    .navbar-menu-btn {
+      display: flex;
+    }
+
+    .mobile-overlay {
+      display: block;
+    }
+
+    .navbar-role {
+      display: none;
+    }
+  }
+</style>
