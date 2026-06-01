@@ -23,5 +23,8 @@ Thumbs.db
 # Vercel
 .vercel/
 
+# Gentle AI
+.atl/
+
 # TypeScript
 *.tsbuildinfo
