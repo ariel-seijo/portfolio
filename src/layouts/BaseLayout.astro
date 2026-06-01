@@ -2,7 +2,7 @@
 import "@styles/tokens.css";
 import "@styles/global.css";
 import "@styles/animations.css";
-import Navbar from "@components/sections/Navbar.astro";
+import DarkVeilBackground from "@components/ui/DarkVeilBackground.astro";
 
 export interface Props {
   title?: string;
@@ -32,50 +32,7 @@ const { title, description } = Astro.props;
     <title>{title ?? "Ariel Seijo — Full Stack Engineer"}</title>
   </head>
   <body>
-    <!-- Skip link (A11y) -->
-    <a href="#main-content" class="skip-link">
-      Saltar al contenido
-    </a>
-
-    <Navbar />
-    <main id="main-content" class="page-container">
-      <slot />
-    </main>
+    <DarkVeilBackground />
+    <slot />
   </body>
 </html>
-
-<style is:global>
-  .skip-link {
-    position: fixed;
-    top: var(--space-4);
-    left: var(--space-4);
-    z-index: 100;
-    padding: var(--space-2) var(--space-4);
-    background: var(--color-accent);
-    color: white;
-    border-radius: 8px;
-    font-size: var(--text-body-sm);
-    font-weight: 500;
-    transform: translateY(-120%);
-    transition: transform 0.2s var(--ease-out-expo);
-  }
-
-  .skip-link:focus {
-    transform: translateY(0);
-  }
-
-  .page-container {
-    position: relative;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-  }
-
-  /* Mobile: scroll normal */
-  @media (max-width: 1023px) {
-    .page-container {
-      height: auto;
-      overflow: visible;
-    }
-  }
-</style>

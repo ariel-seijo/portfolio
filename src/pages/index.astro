@@ -2,28 +2,118 @@
 export const prerender = true;
 
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Hero from "@components/sections/Hero.astro";
-import Projects from "@components/sections/Projects.astro";
-import Stack from "@components/sections/Stack.astro";
-import Experience from "@components/sections/Experience.astro";
-import Contact from "@components/sections/Contact.astro";
+import Navbar from "@components/sections/Navbar.astro";
+
+const sections = [
+  { id: "hero", number: "01", title: "Inicio" },
+  { id: "perfil", number: "02", title: "Perfil" },
+  { id: "experiencia", number: "03", title: "Experiencia" },
+  { id: "proyectos", number: "04", title: "Proyectos" },
+  { id: "contacto", number: "05", title: "Contacto" },
+];
 ---
 
 <BaseLayout
   title="Ariel Seijo — Full Stack Engineer"
   description="Arquitectura que convierte complejidad en producto. Especialista en sistemas financieros y plataformas de alto tráfico."
 >
-  <Hero />
-  <Projects />
-  <Stack />
-  <Experience />
-  <Contact />
+  <Navbar />
+
+  <main class="snap-container">
+    {
+      sections.map((section, i) => (
+        <section
+          id={section.id}
+          class:list={[
+            "snap-section",
+            i % 2 === 1 ? "snap-section--alt" : "",
+          ]}
+        >
+          <div class="section-content">
+            <span class="section-number">{section.number}</span>
+            <h2 class="section-title">{section.title}</h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+        </section>
+      ))
+    }
+  </main>
 </BaseLayout>
 
-<script>
-  import { initFullscreenNav } from "@hooks/useFullscreenNav";
-  import { initLightBorder } from "@hooks/useLightBorder";
+<style is:global>
+  /* ---- Scroll-snap container ---- */
+  .snap-container {
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255 255 255 / 0.08) transparent;
+  }
 
-  initFullscreenNav();
-  initLightBorder();
-</script>
+  .snap-container::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .snap-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .snap-container::-webkit-scrollbar-thumb {
+    background: rgb(255 255 255 / 0.06);
+    border-radius: 3px;
+  }
+
+  .snap-container::-webkit-scrollbar-thumb:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  /* ---- Sections ---- */
+  .snap-section {
+    height: 100vh;
+    height: 100dvh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .snap-section--alt {
+    background: rgb(255 255 255 / 0.008);
+  }
+
+  /* ---- Section content ---- */
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .section-title {
+    font-size: var(--text-display);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .section-line {
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 1px;
+    opacity: 0.5;
+  }
+</style>

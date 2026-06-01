@@ -9,10 +9,10 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { id: "hero", label: "Inicio", href: "#hero" },
-  { id: "projects", label: "Proyectos", href: "#projects" },
-  { id: "stack", label: "Stack", href: "#stack" },
-  { id: "experience", label: "Experiencia", href: "#experience" },
-  { id: "contact", label: "Contacto", href: "#contact" },
+  { id: "perfil", label: "Perfil", href: "#perfil" },
+  { id: "experiencia", label: "Experiencia", href: "#experiencia" },
+  { id: "proyectos", label: "Proyectos", href: "#proyectos" },
+  { id: "contacto", label: "Contacto", href: "#contacto" },
 ] as const;
 
 export type SectionId = (typeof NAV_LINKS)[number]["id"];
