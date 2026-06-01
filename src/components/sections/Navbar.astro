@@ -1,266 +1,208 @@
 ---
-import { NAV_LINKS, SITE } from "@data/site";
+import { NAV_LINKS } from "@data/site";
 ---
 
-<header class="navbar" role="banner">
-  <div class="navbar-inner">
-    <!-- Logo / Name -->
-    <a href="#hero" class="navbar-brand" aria-label={`${SITE.name} — Inicio`}>
-      <span class="navbar-dot" aria-hidden="true"></span>
-      <span class="navbar-name">{SITE.name}</span>
-      <span class="navbar-role">{SITE.title}</span>
-    </a>
+<nav class="nav" aria-label="Navegación principal">
+  <div class="nav-track">
+    {
+      NAV_LINKS.map((link) => (
+        <a href={link.href} class="nav-link" data-section={link.id}>
+          {link.label}
+        </a>
+      ))
+    }
+    <div class="nav-indicator" aria-hidden="true"></div>
+  </div>
+</nav>
 
-    <!-- Desktop Nav -->
-    <nav class="navbar-nav" role="navigation" aria-label="Navegación principal">
-      <ul class="navbar-links">
-        {
-          NAV_LINKS.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="navbar-link"
-                data-section={link.id}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
+<script>
+  function initNav() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+    const indicator = document.querySelector<HTMLDivElement>(".nav-indicator");
+    const container = document.querySelector<HTMLElement>(".snap-container");
+    if (!links.length || !indicator || !container) return;
+
+    // Grab all snap sections from the container
+    const sections = [
+      ...container.querySelectorAll<HTMLElement>("section[id]"),
+    ];
+    if (!sections.length) return;
+
+    // Start empty — setActive will populate on first call
+    let activeId = "";
+
+    // --- Indicator helpers ---
+    function moveIndicator(link: HTMLAnchorElement | null) {
+      if (!link) return;
+      const track = link.parentElement!;
+      const trackRect = track.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+
+      // Indicator has left:5px in CSS, so subtract it from the offset.
+      // Also subtract 1px per side for the indicator's own border.
+      const left = linkRect.left - trackRect.left - 5;
+      const width = linkRect.width - 2;
+
+      indicator.style.width = `${width}px`;
+      indicator.style.transform = `translateX(${left}px)`;
+    }
+
+    function setActive(id: string) {
+      if (id === activeId) return;
+      activeId = id;
+
+      // Reveal indicator on first call
+      indicator.style.opacity = "1";
+
+      let activeLink: HTMLAnchorElement | null = null;
+      links.forEach((l) => {
+        if (l.dataset.section === id) {
+          l.setAttribute("aria-current", "true");
+          activeLink = l;
+        } else {
+          l.removeAttribute("aria-current");
         }
-      </ul>
-    </nav>
+      });
+      moveIndicator(activeLink);
+    }
 
-    <!-- Mobile menu button -->
-    <button
-      class="navbar-menu-btn"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-      id="menu-toggle"
-    >
-      <span class="menu-bar"></span>
-      <span class="menu-bar"></span>
-      <span class="menu-bar"></span>
-    </button>
-  </div>
+    // --- Intersection Observer ---
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the entry with the highest intersection ratio
+        let best = entries[0];
+        for (let i = 1; i < entries.length; i++) {
+          if (entries[i].intersectionRatio > best.intersectionRatio) {
+            best = entries[i];
+          }
+        }
 
-  <!-- Progress bar -->
-  <div
-    class="navbar-progress"
-    role="progressbar"
-    aria-valuenow="0"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    aria-label="Progreso de lectura"
-  >
-    <div class="navbar-progress-fill" id="progress-fill"></div>
-  </div>
-</header>
-
-<!-- Mobile overlay -->
-<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true">
-  <nav class="mobile-nav" aria-label="Menú móvil">
-    <ul class="mobile-nav-links">
+        if (best.intersectionRatio > 0.2) {
+          setActive(best.target.id);
+        }
+      },
       {
-        NAV_LINKS.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="mobile-nav-link"
-              data-section={link.id}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
-</div>
+        root: container,
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    // --- Link clicks ---
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = link.dataset.section;
+        if (!id) return;
+        const section = document.getElementById(id);
+        section?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    // --- Initial state ---
+    const hash = window.location.hash.replace("#", "");
+    if (hash && sections.some((s) => s.id === hash)) {
+      setActive(hash);
+      // Small delay to let scroll-snap settle first
+      requestAnimationFrame(() => {
+        document.getElementById(hash)?.scrollIntoView();
+      });
+    } else {
+      setActive(sections[0].id);
+    }
+
+    // Re-position indicator after web fonts load to fix layout shift
+    document.fonts.ready.then(() => {
+      requestAnimationFrame(
+        () =>
+          moveIndicator(
+            document.querySelector<HTMLAnchorElement>(
+              '.nav-link[aria-current="true"]',
+            ),
+          ),
+      );
+    });
+  }
+
+  // Defer to next tick so the DOM is fully parsed (inline scripts block the parser)
+  setTimeout(initNav, 0);
+</script>
 
 <style>
-  .navbar {
+  .nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    height: var(--navbar-height);
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
   }
 
-  .navbar-inner {
+  .nav-track {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    padding: 0 var(--content-padding);
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: var(--color-bg-glass);
-    border-bottom: 1px solid var(--color-border-default);
+    gap: 2px;
+    position: relative;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    border: 1px solid rgba(106, 0, 255, 0.318);
+    border-radius: 12px;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.08),
+      0 4px 24px rgb(0 0 0 / 0.45);
   }
 
-  /* Brand */
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
+  /* ---- Links ---- */
+  .nav-link {
+    position: relative;
+    padding: 0.5rem 1.125rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgb(255 255 255 / 0.6);
     text-decoration: none;
-    color: var(--color-text-primary);
+    border-radius: 12px;
+    transition: color 0.3s var(--ease-out-quint);
+    white-space: nowrap;
+    z-index: 1;
   }
 
-  .navbar-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    flex-shrink: 0;
+  .nav-link:hover {
+    color: #fff;
   }
 
-  .navbar-name {
-    font-weight: 600;
-    font-size: var(--text-body);
-    letter-spacing: -0.01em;
+  .nav-link[aria-current="true"] {
+    color: #000000;
   }
 
-  .navbar-role {
-    font-size: var(--text-caption);
-    color: var(--color-text-tertiary);
-    font-weight: 400;
-    padding-left: var(--space-2);
-    border-left: 1px solid var(--color-border-default);
-  }
-
-  /* Desktop links */
-  .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-  }
-
-  .navbar-link {
-    padding: var(--space-1) var(--space-3);
-    font-size: var(--text-body-sm);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    border-radius: 8px;
-    transition: color 0.15s var(--ease-in-out-circ),
-      background 0.15s var(--ease-in-out-circ);
-  }
-
-  .navbar-link:hover,
-  .navbar-link[aria-current="true"] {
-    color: var(--color-text-primary);
-  }
-
-  .navbar-link[aria-current="true"] {
-    background: var(--color-accent-muted);
-  }
-
-  /* Progress bar */
-  .navbar-progress {
-    height: 1px;
-    background: var(--color-border-default);
-  }
-
-  .navbar-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--color-accent);
-    transition: width 0.3s var(--ease-out-expo);
-  }
-
-  /* Mobile menu button */
-  .navbar-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    padding: var(--space-2);
-    border-radius: 8px;
-  }
-
-  .menu-bar {
-    display: block;
-    width: 20px;
-    height: 1.5px;
-    background: var(--color-text-primary);
-    border-radius: 1px;
-    transition: transform 0.2s var(--ease-out-expo),
-      opacity 0.2s var(--ease-out-expo);
-  }
-
-  .navbar-menu-btn[aria-expanded="true"] .menu-bar:nth-child(1) {
-    transform: translateY(6.5px) rotate(45deg);
-  }
-
-  .navbar-menu-btn[aria-expanded="true"] .menu-bar:nth-child(2) {
+  /* ---- Sliding indicator pill ---- */
+  .nav-indicator {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 12px;
+    border: 1px solid rgb(255 255 255 / 0.05);
     opacity: 0;
-  }
-
-  .navbar-menu-btn[aria-expanded="true"] .menu-bar:nth-child(3) {
-    transform: translateY(-6.5px) rotate(-45deg);
-  }
-
-  /* Mobile overlay */
-  .mobile-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 49;
-    background: var(--color-bg-primary);
-    opacity: 0;
+    transition:
+      transform 0.3s var(--ease-out-quint),
+      width 0.3s var(--ease-out-quint),
+      opacity 0.12s var(--ease-out-quint);
     pointer-events: none;
-    transition: opacity 0.3s var(--ease-out-expo);
   }
 
-  .mobile-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .mobile-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-
-  .mobile-nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-8);
-  }
-
-  .mobile-nav-link {
-    font-size: var(--text-h2);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    transition: color 0.15s var(--ease-in-out-circ);
-  }
-
-  .mobile-nav-link:focus,
-  .mobile-nav-link[aria-current="true"] {
-    color: var(--color-accent);
-  }
-
-  /* Mobile */
-  @media (max-width: 1023px) {
-    .navbar-nav {
-      display: none;
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .nav {
+      top: 1rem;
     }
 
-    .navbar-menu-btn {
-      display: flex;
-    }
-
-    .mobile-overlay {
-      display: block;
-    }
-
-    .navbar-role {
-      display: none;
+    .nav-link {
+      padding: 0.45rem 0.75rem;
+      font-size: 0.6875rem;
     }
   }
 </style>
