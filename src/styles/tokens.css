@@ -59,7 +59,7 @@
     "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
 
   /* === TYPE SCALE === */
-  --text-hero: clamp(3.5rem, 7vw, 6rem);
+  --text-hero: clamp(4.7rem, 7vw, 3.5rem);
   --text-display: clamp(2.5rem, 5vw, 4rem);
   --text-h1: 2rem;
   --text-h2: 1.5rem;

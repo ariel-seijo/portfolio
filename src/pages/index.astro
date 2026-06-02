@@ -22,57 +22,52 @@ const sections = [
   <main class="snap-container">
     <!-- Hero Section -->
     <section id="hero" class="snap-section hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Ariel Seijo<br /><span class="hero-title-accent"
-            >Desarrollador Full Stack</span
-          >
-        </h1>
-        <p class="hero-subtitle">Especializado en Aplicaciones Web.</p>
-        <p class="hero-description">
-          Soluciones a problemas reales que equilibran experiencia de usuario,
-          accesibilidad, diseño, SEO, seguridad y performance.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
-          <a href="#contacto" class="btn btn-secondary">Contactar</a>
-          <a href="/cv.pdf" class="btn btn-ghost" download>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden="true"
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Hugo Ariel Seijo<br /><span class="hero-title-accent"
+              >Desarrollador Full Stack</span
             >
-              <path
-                d="M8 11L8 1M8 11L5 8M8 11L11 8"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M2 13H14"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"></path>
-            </svg>
-            Descargar CV
-          </a>
+          </h1>
+          <p class="hero-description">
+            Soluciones a problemas reales que equilibran experiencia de usuario,
+            accesibilidad, diseño, SEO, seguridad y performance.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+            <a href="#contacto" class="btn btn-secondary">Contactar</a>
+            <a href="/cv.pdf" class="btn btn-ghost" download>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 11L8 1M8 11L5 8M8 11L11 8"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M2 13H14"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+              </svg>
+              Descargar CV
+            </a>
+          </div>
         </div>
 
-        <div class="hero-stats">
-          <AnimatedCounter
-            target={4}
-            prefix="+"
-            label=" años de experiencia"
-            client:visible
-          />
-          <AnimatedCounter
-            target={3}
-            prefix="+"
-            label=" proyectos realizados"
-            client:visible
+        <div class="hero-avatar">
+          <img
+            src="/avatar-img.webp"
+            alt="Ariel Seijo"
+            width="400"
+            height="400"
           />
         </div>
       </div>
@@ -101,14 +96,38 @@ const sections = [
      HERO SECTION
      ============================================= */
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: stretch;
+    max-width: 1200px;
+    width: 100%;
+    padding: var(--content-padding);
+    animation: fade-in-up 0.8s var(--ease-out-expo) forwards;
+  }
+
   .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-6);
-    max-width: 52rem;
-    padding: var(--content-padding);
-    animation: fade-in-up 0.8s var(--ease-out-expo) forwards;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-5);
+  }
+
+  /* ---- Avatar ---- */
+  .hero-avatar {
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .hero-avatar img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
   }
 
   .hero-overline {
@@ -119,26 +138,23 @@ const sections = [
     text-transform: uppercase;
     letter-spacing: 0.12em;
     margin-bottom: 0;
-    text-align: center;
   }
 
   .hero-title {
-    text-align: center;
     font-size: var(--text-hero);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.03em;
-    line-height: 0.7;
+    line-height: 1;
     margin: 0;
   }
 
   .hero-title-accent {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     color: var(--color-accent);
   }
 
   .hero-subtitle {
-    text-align: center;
     font-family: var(--font-mono);
     font-size: 0.875rem;
     font-weight: 500;
@@ -149,7 +165,6 @@ const sections = [
   }
 
   .hero-description {
-    text-align: center;
     font-size: 1rem;
     color: var(--color-text-tertiary);
     line-height: 1.7;
@@ -163,7 +178,6 @@ const sections = [
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-4);
-    margin-top: var(--space-4);
   }
 
   .btn {
@@ -228,39 +242,31 @@ const sections = [
   .hero-stats {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     gap: var(--space-10);
     margin-top: var(--space-6);
     padding-top: var(--space-8);
     border-top: 1px solid var(--color-border-default);
   }
 
-  /* AnimatedCounter styles */
-  .animated-counter {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
-
-  .animated-counter__number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .animated-counter__label {
-    font-size: 0.8125rem;
-    font-weight: 400;
-    color: var(--color-text-tertiary);
-    letter-spacing: 0.01em;
-  }
-
   /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .hero-avatar {
+      order: -1;
+      max-width: 280px;
+      aspect-ratio: 1;
+      justify-self: center;
+    }
+  }
+
   @media (max-width: 640px) {
     .hero-content {
-      gap: var(--space-5);
+      gap: var(--space-4);
     }
 
     .hero-subtitle {
@@ -282,10 +288,12 @@ const sections = [
 
     .hero-stats {
       gap: var(--space-6);
+      justify-content: flex-start;
     }
 
-    .animated-counter__number {
-      font-size: 1.75rem;
+    .hero-avatar {
+      max-width: 220px;
+      aspect-ratio: 1;
     }
   }
 </style>
@@ -365,5 +373,36 @@ const sections = [
     background: var(--color-accent);
     border-radius: 1px;
     opacity: 0.5;
+  }
+
+  /* ---- AnimatedCounter ---- */
+  .animated-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-1);
+  }
+
+  .animated-counter__number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .animated-counter__label {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 640px) {
+    .animated-counter__number {
+      font-size: 1.75rem;
+    }
   }
 </style>
