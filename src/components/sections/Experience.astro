@@ -20,10 +20,10 @@
       </div>
       <article class="timeline-card">
         <time class="job-date" datetime="2026">2026 — ???</time>
-        <h3 class="job-title">Desarrollador</h3>
+        <h3 class="job-title">Desarrollador Junior</h3>
         <p class="job-company">???</p>
         <p class="job-desc">
-          Desarrollo de soluciones tecnológicas utilizando... bla, bla, bla.
+          Diseño y programación de sistemas utilizando... bla, bla, bla.
         </p>
       </article>
     </div>
@@ -38,7 +38,12 @@
         />
       </div>
       <blockquote class="quote-bubble">
-        <p class="quote-text">Estoy reservando esta sección para tu empresa.</p>
+        <div class="typing-indicator" aria-hidden="true">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+        <p class="quote-text">Estoy guardando este espacio para tu empresa.</p>
       </blockquote>
     </div>
   </div>
@@ -52,6 +57,7 @@
   .experience {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--space-10);
     padding: var(--space-10) var(--content-padding);
     max-width: 800px;
@@ -235,6 +241,7 @@
   .quote {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-6);
     max-width: 620px;
   }
@@ -293,8 +300,43 @@
     border-bottom-left-radius: 3px;
   }
 
+  /* ---- Typing indicator (social media "..." dots) ---- */
+
+  .typing-indicator {
+    position: absolute;
+    left: var(--space-6);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    z-index: 2;
+    animation: dots-hide 0.3s ease-out 1.8s forwards;
+  }
+
+  .typing-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  .typing-dot:nth-child(1) {
+    animation: dot-appear 0.35s ease-out 0s forwards;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation: dot-appear 0.35s ease-out 0.35s forwards;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation: dot-appear 0.35s ease-out 0.7s forwards;
+  }
+
   .quote-text {
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 350;
     font-style: italic;
     color: var(--color-text-secondary);
@@ -302,6 +344,8 @@
     margin: 0;
     position: relative;
     z-index: 1;
+    opacity: 0;
+    animation: message-reveal 0.5s ease-out 2s forwards;
   }
 
   .quote-attribution {
@@ -310,10 +354,11 @@
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--color-accent);
-    opacity: 0.75;
+    opacity: 0;
     text-align: right;
     position: relative;
     z-index: 1;
+    animation: message-reveal 0.5s ease-out 2.3s forwards;
   }
 
   /* =============================================
@@ -342,6 +387,42 @@
     }
     50% {
       transform: translateY(-5px);
+    }
+  }
+
+  @keyframes dot-appear {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    40% {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+    70% {
+      transform: scale(0.85);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes dots-hide {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @keyframes message-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -427,6 +508,11 @@
 
     .quote-attribution {
       text-align: center;
+    }
+
+    .typing-indicator {
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 </style>
