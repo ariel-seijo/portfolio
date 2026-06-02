@@ -4,10 +4,10 @@ export const prerender = true;
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Navbar from "@components/sections/Navbar.astro";
 import Profile from "@components/sections/Profile.astro";
+import Experience from "@components/sections/Experience.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
 
 const sections = [
-  { id: "experiencia", number: "03", title: "Experiencia" },
   { id: "proyectos", number: "04", title: "Proyectos" },
   { id: "contacto", number: "05", title: "Contacto" },
 ];
@@ -74,6 +74,9 @@ const sections = [
 
     <!-- Profile Section -->
     <Profile />
+
+    <!-- Experience Section -->
+    <Experience />
 
     <!-- Other Sections -->
     {
