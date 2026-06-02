@@ -1,0 +1,363 @@
+---
+
+---
+
+<section id="perfil" class="snap-section profile-section">
+  <div class="profile">
+    <div class="profile-body">
+      <!-- Avatar -->
+      <div class="profile-avatar-col">
+        <div class="avatar-wrapper">
+          <img
+            src="/avatar-profile.webp"
+            alt="Ariel Seijo"
+            class="avatar"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="profile-content">
+        <!-- Sobre mí -->
+        <div class="profile-section-block">
+          <h3 class="section-label">Sobre mí</h3>
+          <p class="about-text">
+            Desarrollador Full Stack especializado en Aplicaciones Web.
+            <br />
+            Me enfoco en crear soluciones escalables y mantenibles que resuelvan problemas
+            reales, equilibrando diseño, experiencia de usuario, accesibilidad, SEO,
+            seguridad y rendimiento.
+            <br />
+            Soy una persona resolutiva y muy comunicativa. Busco ser el compañero
+            de equipo que todos deseamos tener. Cuando no entiendo algo, lo admito.
+            Pero después investigo hasta entenderlo. Aprendí a aprender, y esa es
+            mi herramienta más valiosa.
+          </p>
+        </div>
+
+        <hr class="section-divider" aria-hidden="true" />
+
+        <!-- Educación -->
+        <div class="profile-section-block">
+          <h3 class="section-label">Educación</h3>
+          <dl class="edu-grid">
+            <div class="edu-entry">
+              <dt class="edu-degree">Tecnicatura en Desarrollo de Software</dt>
+              <dd class="edu-school">
+                Instituto de Formación Técnica Superior Nº4, CABA
+              </dd>
+              <dd class="edu-year">2022 — 2024</dd>
+            </div>
+          </dl>
+        </div>
+
+        <hr class="section-divider" aria-hidden="true" />
+
+        <!-- Stack Tecnológico -->
+        <div class="profile-section-block">
+          <h3 class="section-label">Stack Tecnológico</h3>
+          <div class="stack-groups">
+            <div class="stack-line">
+              <span class="stack-line-label">Frontend</span>
+              <span class="stack-line-pills">
+                <span class="pill">React</span>
+                <span class="pill">Next.js</span>
+                <span class="pill">Astro</span>
+                <span class="pill">Tailwind CSS</span>
+              </span>
+            </div>
+            <div class="stack-line">
+              <span class="stack-line-label">Backend</span>
+              <span class="stack-line-pills">
+                <span class="pill">Node.js</span>
+                <span class="pill">Prisma ORM</span>
+              </span>
+            </div>
+            <div class="stack-line">
+              <span class="stack-line-label">Lenguajes</span>
+              <span class="stack-line-pills">
+                <span class="pill">TypeScript</span>
+                <span class="pill">Java</span>
+              </span>
+            </div>
+            <div class="stack-line">
+              <span class="stack-line-label">Bases de Datos</span>
+              <span class="stack-line-pills">
+                <span class="pill">PostgreSQL</span>
+                <span class="pill">MySQL</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .profile {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    padding: var(--space-10) var(--content-padding);
+  }
+
+  /* =============================================
+     SECTION NUMBER (decorative)
+     ============================================= */
+
+  .profile-num {
+    position: absolute;
+    top: 0;
+    right: var(--content-padding);
+    font-family: var(--font-mono);
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgb(139 92 246 / 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* =============================================
+     BODY (avatar + content)
+     ============================================= */
+
+  .profile-body {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* =============================================
+     AVATAR
+     ============================================= */
+
+  .profile-avatar-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .avatar {
+    display: block;
+    min-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* =============================================
+     CONTENT
+     ============================================= */
+
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-width: 0;
+  }
+
+  .profile-section-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* ---- Section label ---- */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    opacity: 0.85;
+  }
+
+  /* ---- About ---- */
+  .about-text {
+    font-size: 0.9rem;
+    text-align: justify;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    max-width: 100ch;
+  }
+
+  /* =============================================
+     DIVIDER
+     ============================================= */
+
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, rgb(139 92 246 / 0.2), transparent);
+    margin: 0;
+  }
+
+  /* =============================================
+     EDUCATION
+     ============================================= */
+
+  .edu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .edu-entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0 var(--space-6);
+    align-items: baseline;
+  }
+
+  .edu-degree {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .edu-school {
+    font-size: 0.8125rem;
+    color: var(--color-text-tertiary);
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .edu-year {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    white-space: nowrap;
+  }
+
+  /* =============================================
+     STACK
+     ============================================= */
+
+  .stack-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .stack-line {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  .stack-line-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    min-width: 72px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .stack-line-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--color-accent-muted);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-active);
+    border-radius: 8px;
+    transition:
+      color 0.2s var(--ease-out-quint),
+      background 0.2s var(--ease-out-quint),
+      border-color 0.2s var(--ease-out-quint);
+  }
+
+  .pill:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-hover-2);
+    border-color: rgb(139 92 246 / 0.25);
+  }
+
+  /* =============================================
+     RESPONSIVE
+     ============================================= */
+
+  @media (max-width: 860px) {
+    .profile-body {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .profile-avatar-col {
+      padding-top: 0;
+    }
+
+    .avatar {
+      width: 200px;
+    }
+
+    .profile-num {
+      font-size: 4rem;
+      top: var(--space-4);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .profile {
+      padding: var(--space-6) var(--space-5);
+    }
+
+    .profile-num {
+      font-size: 3rem;
+      right: var(--space-5);
+    }
+
+    .avatar {
+      width: 160px;
+    }
+
+    .about-text {
+      font-size: 0.9375rem;
+    }
+
+    .edu-entry {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 0;
+    }
+
+    .edu-year {
+      grid-column: 1;
+      grid-row: 3;
+      margin-top: 2px;
+    }
+
+    .stack-line {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>

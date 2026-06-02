@@ -3,10 +3,10 @@ export const prerender = true;
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Navbar from "@components/sections/Navbar.astro";
+import Profile from "@components/sections/Profile.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
 
 const sections = [
-  { id: "perfil", number: "02", title: "Perfil" },
   { id: "experiencia", number: "03", title: "Experiencia" },
   { id: "proyectos", number: "04", title: "Proyectos" },
   { id: "contacto", number: "05", title: "Contacto" },
@@ -30,8 +30,7 @@ const sections = [
             >
           </h1>
           <p class="hero-description">
-            Soluciones a problemas reales que equilibran experiencia de usuario,
-            accesibilidad, diseño, SEO, seguridad y performance.
+            Construyo software que funciona tan bien como se ve.
           </p>
 
           <div class="hero-actions">
@@ -72,6 +71,9 @@ const sections = [
         </div>
       </div>
     </section>
+
+    <!-- Profile Section -->
+    <Profile />
 
     <!-- Other Sections -->
     {
