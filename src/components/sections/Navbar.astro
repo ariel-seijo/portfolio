@@ -114,13 +114,12 @@ import { NAV_LINKS } from "@data/site";
 
     // Re-position indicator after web fonts load to fix layout shift
     document.fonts.ready.then(() => {
-      requestAnimationFrame(
-        () =>
-          moveIndicator(
-            document.querySelector<HTMLAnchorElement>(
-              '.nav-link[aria-current="true"]',
-            ),
+      requestAnimationFrame(() =>
+        moveIndicator(
+          document.querySelector<HTMLAnchorElement>(
+            '.nav-link[aria-current="true"]',
           ),
+        ),
       );
     });
   }
@@ -170,7 +169,7 @@ import { NAV_LINKS } from "@data/site";
   }
 
   .nav-link:hover {
-    color: #fff;
+    color: var(--bg-primary);
   }
 
   .nav-link[aria-current="true"] {
