@@ -1,0 +1,84 @@
+---
+import ProjectBentoGrid from "@components/react/ProjectBentoGrid.jsx";
+import ProjectLightbox from "@components/react/ProjectLightbox.jsx";
+import { PROJECTS } from "@data/projects";
+---
+
+<section id="proyectos" class="snap-section projects-section">
+  <div class="projects">
+    <header class="section-header">
+      <h2 class="section-heading">Proyectos</h2>
+      <div class="section-divider" aria-hidden="true"></div>
+    </header>
+
+    <ProjectBentoGrid projects={PROJECTS} client:load />
+  </div>
+
+  <ProjectLightbox projects={PROJECTS} client:load />
+</section>
+
+<style>
+  .projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-8) var(--content-padding);
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    align-self: stretch;
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .section-heading {
+    font-size: var(--text-h1);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 1px;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .projects {
+      gap: var(--space-5);
+      padding: var(--space-6) var(--space-5);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 6vw, var(--text-display));
+    }
+  }
+</style>

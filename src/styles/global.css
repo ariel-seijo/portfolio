@@ -135,3 +135,63 @@ ol {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(255 255 255 / 0.15);
 }
+
+/* === BUTTONS === */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 12px;
+  text-decoration: none;
+  transition:
+    background 0.2s var(--ease-out-quint),
+    color 0.2s var(--ease-out-quint),
+    border-color 0.2s var(--ease-out-quint),
+    transform 0.15s var(--ease-out-quint);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-accent);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.btn-secondary {
+  background: var(--color-accent-muted);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-active);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-hover-2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid transparent;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.btn-ghost:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border-default);
+}
