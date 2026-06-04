@@ -66,28 +66,42 @@ import { NAV_LINKS } from "@data/site";
       moveIndicator(activeLink);
     }
 
-    // --- Intersection Observer ---
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the entry with the highest intersection ratio
-        let best = entries[0];
-        for (let i = 1; i < entries.length; i++) {
-          if (entries[i].intersectionRatio > best.intersectionRatio) {
-            best = entries[i];
+    // --- Active section tracking ---
+    // Uses scroll position to find which section's top is closest to the
+    // top of the viewport — no oscillation at boundaries.
+    let ticking = false;
+
+    function updateActiveFromScroll() {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        const viewportTop = window.scrollY;
+        const viewportMid = viewportTop + window.innerHeight / 3;
+
+        let closestSection: HTMLElement | null = null;
+        let closestDistance = Infinity;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top + window.scrollY;
+          const distance = Math.abs(sectionTop - viewportMid);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestSection = section;
           }
         }
 
-        if (best.intersectionRatio > 0.2) {
-          setActive(best.target.id);
+        if (closestSection) {
+          setActive(closestSection.id);
         }
-      },
-      {
-        root: null,
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      },
-    );
 
-    sections.forEach((s) => observer.observe(s));
+        ticking = false;
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
 
     // --- Link clicks ---
     links.forEach((link) => {
