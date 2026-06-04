@@ -19,9 +19,9 @@ const sections = [
 >
   <Navbar />
 
-  <main class="snap-container">
+  <main class="page-container">
     <!-- Hero Section -->
-    <section id="hero" class="snap-section hero-section">
+    <section id="hero" class="section-wrapper hero-section">
       <div class="hero-grid">
         <div class="hero-content">
           <h1 class="hero-title">
@@ -86,7 +86,7 @@ const sections = [
       sections.map((section, i) => (
         <section
           id={section.id}
-          class:list={["snap-section", i % 2 === 1 ? "snap-section--alt" : ""]}
+          class:list={["section-wrapper", i % 2 === 1 ? "section-wrapper--alt" : ""]}
         >
           <div class="section-content">
             <span class="section-number">{section.number}</span>
@@ -248,50 +248,33 @@ const sections = [
 </style>
 
 <style is:global>
-  /* ---- Scroll-snap container ---- */
-  .snap-container {
-    height: 100vh;
-    height: 100dvh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: rgb(255 255 255 / 0.08) transparent;
+  /* ---- Page container ---- */
+  .page-container {
+    position: relative;
+    z-index: 1;
   }
 
-  .snap-container::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  .snap-container::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .snap-container::-webkit-scrollbar-thumb {
-    background: rgb(255 255 255 / 0.06);
-    border-radius: 3px;
-  }
-
-  .snap-container::-webkit-scrollbar-thumb:hover {
-    background: rgb(255 255 255 / 0.12);
-  }
-
-  /* ---- Sections ---- */
-  .snap-section {
-    height: 100vh;
-    height: 100dvh;
-    scroll-snap-align: start;
+  /* ---- Section wrapper ---- */
+  .section-wrapper {
+    position: relative;
+    padding-block: var(--space-24);
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
   }
 
-  .snap-section--alt {
+  .section-wrapper--alt {
     background: rgb(255 255 255 / 0.008);
   }
 
-  /* ---- Section content (placeholder for other sections) ---- */
+  /* ---- Hero overrides ---- */
+  .hero-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-block: 0;
+  }
+
+  /* ---- Section content (Contacto placeholder) ---- */
   .section-content {
     display: flex;
     flex-direction: column;
@@ -350,6 +333,10 @@ const sections = [
   }
 
   @media (max-width: 640px) {
+    .section-wrapper {
+      padding-block: var(--space-12);
+    }
+
     .animated-counter__number {
       font-size: 1.75rem;
     }

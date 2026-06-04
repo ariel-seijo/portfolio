@@ -19,7 +19,7 @@ import { NAV_LINKS } from "@data/site";
   function initNav() {
     const links = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
     const indicator = document.querySelector<HTMLDivElement>(".nav-indicator");
-    const container = document.querySelector<HTMLElement>(".snap-container");
+    const container = document.querySelector<HTMLElement>(".page-container");
     if (!links.length || !indicator || !container) return;
 
     // Grab all snap sections from the container
@@ -82,7 +82,7 @@ import { NAV_LINKS } from "@data/site";
         }
       },
       {
-        root: container,
+        root: null,
         threshold: [0, 0.25, 0.5, 0.75, 1],
       },
     );
@@ -104,7 +104,6 @@ import { NAV_LINKS } from "@data/site";
     const hash = window.location.hash.replace("#", "");
     if (hash && sections.some((s) => s.id === hash)) {
       setActive(hash);
-      // Small delay to let scroll-snap settle first
       requestAnimationFrame(() => {
         document.getElementById(hash)?.scrollIntoView();
       });
