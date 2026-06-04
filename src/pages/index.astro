@@ -7,6 +7,7 @@ import Profile from "@components/sections/Profile.astro";
 import Experience from "@components/sections/Experience.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
+import SectionDivider from "@components/react/SectionDivider.jsx";
 
 const sections = [
   { id: "contacto", number: "05", title: "Contacto" },
@@ -73,15 +74,19 @@ const sections = [
     </section>
 
     <!-- Profile Section -->
+    <SectionDivider title="Sobre Mi" client:load />
     <Profile />
 
     <!-- Experience Section -->
+    <SectionDivider title="Experiencia" client:load />
     <Experience />
 
     <!-- Projects Section -->
+    <SectionDivider title="Proyectos" client:load />
     <ProjectsSection />
 
     <!-- Other Sections -->
+    <SectionDivider title="Contacto" client:load />
     {
       sections.map((section, i) => (
         <section
