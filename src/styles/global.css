@@ -191,7 +191,66 @@ ol {
 }
 
 .btn-ghost:hover {
-  color: var(--color-text-primary);
   background: var(--color-bg-elevated);
   border-color: var(--color-border-default);
+}
+
+/* =============================================
+   SECTION TITLES — < Title />
+   ============================================= */
+
+.section-heading {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-heading .title-main {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+
+@media (max-width: 640px) {
+  .section-heading .title-main {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+}
+
+.title-block {
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.bracket {
+  font-family: var(--font-mono);
+  font-weight: 300;
+  color: var(--color-accent);
+  opacity: 0.7;
+  transition:
+    opacity 0.4s var(--ease-out-quint),
+    color 0.4s var(--ease-out-quint);
+}
+
+.bracket--open {
+  margin-right: 0.15em;
+}
+
+.bracket--close {
+  margin-left: 0.15em;
+}
+
+.title-block:hover .bracket {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+.title-main {
+  font-size: clamp(1rem, 7vw, 2.8rem);
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--color-text-primary);
 }

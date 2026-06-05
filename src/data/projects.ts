@@ -28,6 +28,11 @@ export const TECH_ICON_MAP: Record<string, string> = {
   tailwindcss: "/tech-icons/tailwindcss.svg",
   postgresql: "/tech-icons/postgresql.svg",
   nodejs: "/tech-icons/nodejs.svg",
+  prisma: "/tech-icons/prisma.svg",
+  git: "/tech-icons/git.svg",
+  github: "/tech-icons/github.svg",
+  vercel: "/tech-icons/vercel.svg",
+  vitest: "/tech-icons/vitest.svg",
 }
 
 export const PROJECTS: Project[] = [

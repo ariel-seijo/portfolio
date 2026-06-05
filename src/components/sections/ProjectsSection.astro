@@ -5,6 +5,14 @@ import { PROJECTS } from "@data/projects";
 ---
 
 <section id="proyectos" class="section-wrapper projects-section">
+  <div class="section-heading">
+    <h2 class="title-block">
+      <span class="bracket bracket--open" aria-hidden="true">&lt;</span>
+      <span class="title-main">Proyectos</span>
+      <span class="bracket bracket--close" aria-hidden="true">/&gt;</span>
+    </h2>
+  </div>
+
   <ProjectCardGrid projects={PROJECTS} client:load />
   <ProjectLightbox projects={PROJECTS} client:load />
 </section>
@@ -12,9 +20,11 @@ import { PROJECTS } from "@data/projects";
 <style>
   .projects-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: var(--space-8) var(--content-padding);
+    gap: var(--space-8);
   }
 
   @media (max-width: 640px) {

@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { TECH_ICON_MAP } from "@data/projects";
+import { getTechIcon } from "@data/techIcons";
 import "./ProjectCardGrid.css";
 
 const STATUS_CONFIG = {
@@ -133,17 +133,14 @@ function ProjectCard({ project, index }) {
         {/* Tech pills */}
         <div className="gallery-card__tech">
           {project.techStack.map((tech) => {
-            const icon = TECH_ICON_MAP[tech.toLowerCase()];
+            const svg = getTechIcon(tech);
             return (
               <span className="gallery-card__pill" key={tech}>
-                {icon && (
-                  <img
-                    src={icon}
-                    alt=""
+                {svg && (
+                  <span
                     className="gallery-card__pill-icon"
                     aria-hidden="true"
-                    width="14"
-                    height="14"
+                    dangerouslySetInnerHTML={{ __html: svg }}
                   />
                 )}
                 {tech}

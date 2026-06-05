@@ -6,7 +6,7 @@ import Navbar from "@components/sections/Navbar.astro";
 import Profile from "@components/sections/Profile.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
-import GeometricDivider from "@components/react/GeometricDivider.jsx";
+
 import ContactForm from "@components/react/ContactForm.jsx";
 ---
 
@@ -70,15 +70,12 @@ import ContactForm from "@components/react/ContactForm.jsx";
     </section>
 
     <!-- Profile Section -->
-    <GeometricDivider title="Sobre Mi" client:load />
     <Profile />
 
     <!-- Experience Section -->
-    <GeometricDivider title="Experiencia" client:load />
     <ProjectsSection />
 
     <!-- Contact Section -->
-    <GeometricDivider title="Contacto" client:load />
     <ContactForm client:load />
   </main>
 </BaseLayout>
@@ -243,10 +240,12 @@ import ContactForm from "@components/react/ContactForm.jsx";
     position: relative;
     max-width: 1200px;
     margin-inline: auto;
-    padding-block: var(--space-24);
+    padding-block: var(--space-8);
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .section-wrapper--alt {
@@ -289,6 +288,7 @@ import ContactForm from "@components/react/ContactForm.jsx";
 
   @media (max-width: 640px) {
     .section-wrapper {
+      min-height: auto;
       max-width: 100%;
       padding-block: var(--space-12);
     }

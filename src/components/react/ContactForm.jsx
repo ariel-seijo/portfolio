@@ -83,11 +83,18 @@ export default function ContactForm() {
 
   return (
     <section id="contacto" className="contact-section">
+      <div className="section-heading">
+        <h2 className="title-block">
+          <span className="bracket bracket--open" aria-hidden="true">&lt;</span>
+          <span className="title-main">Contacto</span>
+          <span className="bracket bracket--close" aria-hidden="true">/&gt;</span>
+        </h2>
+      </div>
+
       <div className="contact-grid stagger-children">
         {/* ── Left: Form ── */}
         <div className="contact-card stagger-1">
           <div className="contact-card-header">
-            <span className="contact-card-badge">Contacto</span>
             <h3 className="contact-card-title">Trabajemos juntos</h3>
             <p className="contact-card-desc">
               Si tenés un proyecto, una idea o propuesta de la que quieras
