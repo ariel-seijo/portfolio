@@ -7,10 +7,7 @@ import Profile from "@components/sections/Profile.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
 import SectionDivider from "@components/react/SectionDivider.jsx";
-
-const sections = [
-  { id: "contacto", number: "05", title: "Contacto" },
-];
+import ContactForm from "@components/react/ContactForm.jsx";
 ---
 
 <BaseLayout
@@ -80,22 +77,9 @@ const sections = [
     <SectionDivider title="Experiencia" client:load />
     <ProjectsSection />
 
-    <!-- Other Sections -->
+    <!-- Contact Section -->
     <SectionDivider title="Contacto" client:load />
-    {
-      sections.map((section, i) => (
-        <section
-          id={section.id}
-          class:list={["section-wrapper", i % 2 === 1 ? "section-wrapper--alt" : ""]}
-        >
-          <div class="section-content">
-            <span class="section-number">{section.number}</span>
-            <h2 class="section-title">{section.title}</h2>
-            <div class="section-line" aria-hidden="true" />
-          </div>
-        </section>
-      ))
-    }
+    <ContactForm client:load />
   </main>
 </BaseLayout>
 
@@ -276,39 +260,6 @@ const sections = [
     max-width: none;
     margin-inline: 0;
     padding-block: 0;
-  }
-
-  /* ---- Section content (Contacto placeholder) ---- */
-  .section-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-6);
-  }
-
-  .section-number {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  .section-title {
-    font-size: var(--text-display);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-
-  .section-line {
-    width: 40px;
-    height: 2px;
-    background: var(--color-accent);
-    border-radius: 1px;
-    opacity: 0.5;
   }
 
   /* ---- AnimatedCounter ---- */
