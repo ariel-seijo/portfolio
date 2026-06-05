@@ -4,7 +4,6 @@ export const prerender = true;
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Navbar from "@components/sections/Navbar.astro";
 import Profile from "@components/sections/Profile.astro";
-import Experience from "@components/sections/Experience.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
 import SectionDivider from "@components/react/SectionDivider.jsx";
@@ -35,7 +34,7 @@ const sections = [
           </p>
 
           <div class="hero-actions">
-            <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+            <a href="#proyectos" class="btn btn-primary">Ver experiencia</a>
             <a href="#contacto" class="btn btn-secondary">Contactar</a>
             <a href="/cv.pdf" class="btn btn-ghost" download>
               <svg
@@ -79,10 +78,6 @@ const sections = [
 
     <!-- Experience Section -->
     <SectionDivider title="Experiencia" client:load />
-    <Experience />
-
-    <!-- Projects Section -->
-    <SectionDivider title="Proyectos" client:load />
     <ProjectsSection />
 
     <!-- Other Sections -->
@@ -262,6 +257,8 @@ const sections = [
   /* ---- Section wrapper ---- */
   .section-wrapper {
     position: relative;
+    max-width: 1200px;
+    margin-inline: auto;
     padding-block: var(--space-24);
     display: flex;
     align-items: center;
@@ -276,6 +273,8 @@ const sections = [
   .hero-section {
     min-height: 100vh;
     min-height: 100dvh;
+    max-width: none;
+    margin-inline: 0;
     padding-block: 0;
   }
 
@@ -339,6 +338,7 @@ const sections = [
 
   @media (max-width: 640px) {
     .section-wrapper {
+      max-width: 100%;
       padding-block: var(--space-12);
     }
 
