@@ -6,7 +6,7 @@ import Navbar from "@components/sections/Navbar.astro";
 import Profile from "@components/sections/Profile.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import AnimatedCounter from "@components/react/AnimatedCounter.jsx";
-import SectionDivider from "@components/react/SectionDivider.jsx";
+import GeometricDivider from "@components/react/GeometricDivider.jsx";
 import ContactForm from "@components/react/ContactForm.jsx";
 ---
 
@@ -70,15 +70,15 @@ import ContactForm from "@components/react/ContactForm.jsx";
     </section>
 
     <!-- Profile Section -->
-    <SectionDivider title="Sobre Mi" client:load />
+    <GeometricDivider title="Sobre Mi" client:load />
     <Profile />
 
     <!-- Experience Section -->
-    <SectionDivider title="Experiencia" client:load />
+    <GeometricDivider title="Experiencia" client:load />
     <ProjectsSection />
 
     <!-- Contact Section -->
-    <SectionDivider title="Contacto" client:load />
+    <GeometricDivider title="Contacto" client:load />
     <ContactForm client:load />
   </main>
 </BaseLayout>
