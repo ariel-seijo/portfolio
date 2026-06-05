@@ -82,12 +82,16 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <section className="contact-section">
+    <section className="section-wrapper contact-section">
       <div className="section-heading" id="contacto">
         <h2 className="title-block">
-          <span className="bracket bracket--open" aria-hidden="true">&lt;</span>
+          <span className="bracket bracket--open" aria-hidden="true">
+            &lt;
+          </span>
           <span className="title-main">Contacto</span>
-          <span className="bracket bracket--close" aria-hidden="true">/&gt;</span>
+          <span className="bracket bracket--close" aria-hidden="true">
+            /&gt;
+          </span>
         </h2>
       </div>
 
