@@ -3,15 +3,25 @@ import { NAV_LINKS } from "@data/site";
 ---
 
 <nav class="nav" aria-label="Navegación principal">
-  <div class="nav-track">
-    {
-      NAV_LINKS.map((link) => (
-        <a href={link.href} class="nav-link" data-section={link.id}>
-          {link.label}
-        </a>
-      ))
-    }
-    <div class="nav-indicator" aria-hidden="true"></div>
+  <div class="nav-inner">
+    <div class="nav-track">
+      {
+        NAV_LINKS.map((link) => (
+          <a href={link.href} class="nav-link" data-section={link.id}>
+            {link.label}
+          </a>
+        ))
+      }
+      <div class="nav-indicator" aria-hidden="true"></div>
+    </div>
+
+    <a href="/cv.pdf" class="nav-cv-btn" download>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 11V1M8 11L5 8M8 11L11 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M1 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      CV
+    </a>
   </div>
 </nav>
 
@@ -155,6 +165,12 @@ import { NAV_LINKS } from "@data/site";
     pointer-events: none;
   }
 
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
   .nav-track {
     display: flex;
     align-items: center;
@@ -209,6 +225,32 @@ import { NAV_LINKS } from "@data/site";
       width 0.3s var(--ease-out-quint),
       opacity 0.12s var(--ease-out-quint);
     pointer-events: none;
+  }
+
+  /* ---- CV download button ---- */
+  .nav-cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: var(--color-accent-muted);
+    border: 1px solid var(--color-border-active);
+    border-radius: 12px;
+    text-decoration: none;
+    pointer-events: auto;
+    transition:
+      color 0.3s var(--ease-out-quint),
+      background 0.3s var(--ease-out-quint),
+      border-color 0.3s var(--ease-out-quint);
+  }
+
+  .nav-cv-btn:hover {
+    color: #fff;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   /* ---- Responsive ---- */

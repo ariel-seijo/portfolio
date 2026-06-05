@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import "./ContactForm.css";
 
 const MESSAGE_MAX = 1000;
@@ -23,6 +23,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState("");
   const [charCount, setCharCount] = useState(0);
+  const [copied, setCopied] = useState(false);
   const formRef = useRef(null);
 
   async function handleSubmit(e) {
@@ -69,6 +70,16 @@ export default function ContactForm() {
     setStatus("idle");
     setErrorMsg("");
   }
+
+  const handleCopyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText("hariel.seijo@gmail.com");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // fallback silently
+    }
+  }, []);
 
   return (
     <section id="contacto" className="contact-section">
@@ -262,7 +273,58 @@ export default function ContactForm() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>hariel.seijo@gmail.com</span>
+                <span className="email-row">
+                  <span>hariel.seijo@gmail.com</span>
+                  <button
+                    type="button"
+                    className="copy-btn"
+                    onClick={handleCopyEmail}
+                    aria-label={
+                      copied ? "Copiado" : "Copiar email al portapapeles"
+                    }
+                  >
+                    {copied ? (
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M3 8l3 3 7-7"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="5"
+                          y="5"
+                          width="9"
+                          height="9"
+                          rx="1.5"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        />
+                        <path
+                          d="M11 5V3a1 1 0 00-1-1H3a1 1 0 00-1 1v7a1 1 0 001 1h2"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </span>
               </li>
               <li className="info-item">
                 <svg
@@ -296,6 +358,34 @@ export default function ContactForm() {
               <span className="availability-dot" aria-hidden="true" />
               Abierto a nuevas oportunidades
             </p>
+          </div>
+
+          <div className="info-card">
+            <h4 className="info-card-title">Curriculum</h4>
+            <a href="/cv.pdf" className="cv-download-link" download>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 11V1M8 11L5 8M8 11L11 8"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M1 14h14"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+              Descargar CV
+            </a>
           </div>
 
           <div className="info-card">

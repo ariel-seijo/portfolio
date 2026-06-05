@@ -93,7 +93,6 @@
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin: 0;
-  max-width: 48ch;
 }
 
 /* ── Form ── */
@@ -386,6 +385,37 @@
   opacity: 0.5;
 }
 
+/* ── Email row with copy button ── */
+.email-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-default);
+  background: transparent;
+  color: var(--color-text-disabled);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color 0.2s var(--ease-out-quint),
+    border-color 0.2s var(--ease-out-quint),
+    background 0.2s var(--ease-out-quint);
+}
+
+.copy-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-accent-muted);
+}
+
 /* ── Availability ── */
 .info-availability {
   display: flex;
@@ -433,6 +463,34 @@
   color: var(--color-accent);
   border-color: var(--color-accent);
   background: var(--color-accent-muted);
+  transform: translateY(-2px);
+}
+
+/* ── CV download link ── */
+.cv-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-muted);
+  border: 1px solid var(--color-border-active);
+  border-radius: 10px;
+  text-decoration: none;
+  transition:
+    color 0.2s var(--ease-out-quint),
+    background 0.2s var(--ease-out-quint),
+    border-color 0.2s var(--ease-out-quint),
+    transform 0.2s var(--ease-spring);
+}
+
+.cv-download-link:hover {
+  color: #fff;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   transform: translateY(-2px);
 }
 
