@@ -206,6 +206,7 @@ ol {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  scroll-margin-top: 5rem;
 }
 
 .section-heading .title-main {
