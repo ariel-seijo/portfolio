@@ -271,6 +271,7 @@
 }
 
 .gallery-card__btn--demo:hover {
+  color: var(--color-text-primary);
   background: color-mix(in srgb, var(--card-accent) 85%, white);
   box-shadow: 0 0 20px var(--card-accent-muted);
 }
