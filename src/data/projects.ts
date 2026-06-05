@@ -1,9 +1,9 @@
-export interface ProjectImage {
+interface ProjectImage {
   src: string
   alt: string
 }
 
-export type ProjectStatus = "deployed" | "development"
+type ProjectStatus = "deployed" | "development"
 
 export interface Project {
   id: string
@@ -17,22 +17,6 @@ export interface Project {
   demoUrl?: string
   codeUrl?: string
   featured?: boolean
-}
-
-/** Mapea nombre de tecnología → ícono en /tech-icons/ */
-export const TECH_ICON_MAP: Record<string, string> = {
-  astro: "/tech-icons/astro.svg",
-  react: "/tech-icons/react.svg",
-  nextjs: "/tech-icons/nextjs.svg",
-  typescript: "/tech-icons/typescript.svg",
-  tailwindcss: "/tech-icons/tailwindcss.svg",
-  postgresql: "/tech-icons/postgresql.svg",
-  nodejs: "/tech-icons/nodejs.svg",
-  prisma: "/tech-icons/prisma.svg",
-  git: "/tech-icons/git.svg",
-  github: "/tech-icons/github.svg",
-  vercel: "/tech-icons/vercel.svg",
-  vitest: "/tech-icons/vitest.svg",
 }
 
 export const PROJECTS: Project[] = [

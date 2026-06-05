@@ -7,8 +7,7 @@
   position: relative;
   max-width: 1200px;
   margin-inline: auto;
-  padding: var(--space-8) var(--content-padding);
-  display: flex;
+  padding: var(--space-12) var(--content-padding);
   flex-direction: column;
   justify-content: center;
   gap: var(--space-8);
@@ -20,8 +19,7 @@
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 360px;
-  gap: var(--space-12);
-  align-items: start;
+  gap: var(--space-16);
 }
 
 /* =============================================
@@ -35,7 +33,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border-default);
   border-radius: 16px;
-  padding: var(--space-10) var(--space-10) var(--space-8);
+  padding: var(--space-12) var(--space-12) var(--space-10);
   overflow: hidden;
   transition:
     border-color 0.4s var(--ease-out-quint),
@@ -72,10 +70,7 @@
 
 /* ── Header ── */
 .contact-card-header {
-  margin-bottom: var(--space-8);
-}
-
-.contact-card-title {
+  margin-bottom: var(--space-10);
   font-size: var(--text-h2);
   font-weight: 700;
   color: var(--color-text-primary);
@@ -501,10 +496,7 @@
 
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
-  }
-
-  .contact-card {
+    gap: var(--space-10);
     padding: var(--space-6) var(--space-6) var(--space-5);
   }
 

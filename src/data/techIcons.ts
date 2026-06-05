@@ -1,6 +1,6 @@
 const ICON_SIZE = 14;
 
-export const TECH_SVG: Record<string, string> = {
+const TECH_SVG: Record<string, string> = {
   react: `<svg width="${ICON_SIZE}" height="${ICON_SIZE}" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="2" fill="#58C4DC"/><ellipse cx="16" cy="16" rx="9.5" ry="3.8" stroke="#58C4DC" stroke-width="1.2" fill="none" opacity="0.9"/><ellipse cx="16" cy="16" rx="9.5" ry="3.8" stroke="#58C4DC" stroke-width="1.2" fill="none" opacity="0.9" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="9.5" ry="3.8" stroke="#58C4DC" stroke-width="1.2" fill="none" opacity="0.9" transform="rotate(120 16 16)"/></svg>`,
   nextjs: `<svg width="${ICON_SIZE}" height="${ICON_SIZE}" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" fill="#fff"/><path d="M20.5 24L12 10.5V24h-2V8h2.5l7 11.5V8h2v16h-1z" fill="#000"/></svg>`,
   astro: `<svg width="${ICON_SIZE}" height="${ICON_SIZE}" viewBox="0 0 32 32" fill="none"><path d="M9.5 26c3-4 6.5-12 6.5-12s3.5 8 6.5 12L16 28.5 9.5 26z" fill="#fff"/><path d="M16 14s-5-5-8-8.5L16 2.5l8 3C21 9 16 14 16 14z" fill="#D83333" opacity="0.7"/></svg>`,

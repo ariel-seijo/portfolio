@@ -6,8 +6,7 @@
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-  width: 100%;
+  gap: var(--space-8);
   max-width: 1200px;
   padding: 0;
 }
@@ -310,7 +309,7 @@
 @media (max-width: 960px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-5);
+    gap: var(--space-6);
   }
 
   .gallery-card__body {

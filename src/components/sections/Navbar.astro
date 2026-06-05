@@ -43,7 +43,7 @@ import { NAV_LINKS } from "@data/site";
 
     // --- Indicator helpers ---
     function moveIndicator(link: HTMLAnchorElement | null) {
-      if (!link) return;
+      if (!link || !indicator) return;
       const track = link.parentElement!;
       const trackRect = track.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
@@ -62,7 +62,7 @@ import { NAV_LINKS } from "@data/site";
       activeId = id;
 
       // Reveal indicator on first call
-      indicator.style.opacity = "1";
+      if (indicator) indicator.style.opacity = "1";
 
       let activeLink: HTMLAnchorElement | null = null;
       links.forEach((l) => {
