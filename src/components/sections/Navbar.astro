@@ -92,34 +92,36 @@ import { NAV_LINKS } from "@data/site";
     }
 
     // --- Active section tracking ---
-    // Scroll-spy: activate the last section whose top edge has scrolled past
-    // the reference line (navbar height + buffer). No oscillation at boundaries.
-    let ticking = false;
+    // IntersectionObserver: native, zero-jitter. Fires only at section boundaries.
+    // rootMargin top: -80px compensates the fixed navbar.
+    // rootMargin bottom: -60% means a section is "active" once its top enters
+    // the upper 40% of the viewport.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Among all currently intersecting sections, pick the one closest to the top
+        let topEntry: IntersectionObserverEntry | null = null;
+        let minTop = Infinity;
 
-    function updateActiveFromScroll() {
-      if (ticking) return;
-      ticking = true;
-
-      requestAnimationFrame(() => {
-        const referenceLine = window.scrollY + 100;
-        let activeSection = sections[0];
-
-        for (const section of sections) {
-          const rect = section.getBoundingClientRect();
-          const sectionTop = rect.top + window.scrollY;
-          if (sectionTop <= referenceLine) {
-            activeSection = section;
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.boundingClientRect.top < minTop) {
+            minTop = entry.boundingClientRect.top;
+            topEntry = entry;
           }
         }
 
-        setActive(activeSection.id);
-        ticking = false;
-      });
-    }
+        if (topEntry) {
+          setActive(topEntry.target.id);
+        }
+      },
+      {
+        rootMargin: "-80px 0px -60% 0px",
+        threshold: 0,
+      },
+    );
 
-    window.addEventListener("scroll", updateActiveFromScroll, {
-      passive: true,
-    });
+    for (const section of sections) {
+      observer.observe(section);
+    }
 
     // --- Link clicks ---
     links.forEach((link) => {
