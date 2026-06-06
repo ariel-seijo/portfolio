@@ -25,6 +25,8 @@ Thumbs.db
 
 # Gentle AI
 .atl/
+.agents/
+skills-lock.json
 
 # TypeScript
 *.tsbuildinfo
