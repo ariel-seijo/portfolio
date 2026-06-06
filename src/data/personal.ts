@@ -36,7 +36,7 @@ export const PERSONAL: PersonalInfo = {
   cvPath: "/Hugo_Desarrollador_FullStack.pdf",
   avatar: {
     hero: "/avatar-img.webp",
-    profile: "/avatar-profile2.webp",
+    profile: "/avatar-profile-img.webp",
   },
   social: {
     github: "https://github.com/ariel-seijo",
