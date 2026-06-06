@@ -2,6 +2,10 @@
    TECH CARD GRID
    ============================================= */
 
+.tech-card-grid-wrapper {
+  width: 100%;
+}
+
 .tech-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));

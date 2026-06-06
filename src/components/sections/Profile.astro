@@ -4,7 +4,7 @@ import TechCardGrid from "@components/react/TechCardGrid.jsx";
 ---
 
 <section id="perfil" class="section-wrapper profile-section">
-  <div class="section-heading">
+  <div class="section-heading reveal-item">
     <h2 class="title-block">
       <span class="bracket bracket--open" aria-hidden="true">&lt;</span>
       <span class="title-main">Sobre mí</span>
@@ -116,7 +116,7 @@ import TechCardGrid from "@components/react/TechCardGrid.jsx";
       </h2>
     </div>
 
-    <div class="edu-card">
+    <div class="edu-card reveal-item">
       <div class="edu-card__bg" aria-hidden="true">
         <svg
           class="edu-card__cap"
@@ -683,24 +683,19 @@ import TechCardGrid from "@components/react/TechCardGrid.jsx";
     border: 1px solid var(--color-border-default);
     border-radius: 20px;
     overflow: hidden;
-    transition:
-      border-color 0.5s var(--ease-out-quint),
-      box-shadow 0.5s var(--ease-out-quint),
-      transform 0.5s var(--ease-spring);
-    animation: edu-enter 0.8s var(--ease-out-expo) forwards;
     opacity: 0;
-    animation-delay: 0.3s;
+    transform: translateY(20px) scale(0.97);
+    transition:
+      opacity 0.8s var(--ease-out-expo),
+      transform 0.8s var(--ease-out-expo),
+      border-color 0.5s var(--ease-out-quint),
+      box-shadow 0.5s var(--ease-out-quint);
+    transition-delay: 0.3s;
   }
 
-  @keyframes edu-enter {
-    from {
-      opacity: 0;
-      transform: translateY(20px) scale(0.97);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+  .edu-card.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .edu-card:hover {
@@ -999,8 +994,9 @@ import TechCardGrid from "@components/react/TechCardGrid.jsx";
 
   @media (prefers-reduced-motion: reduce) {
     .edu-card {
-      animation: none;
+      transition: none;
       opacity: 1;
+      transform: none;
     }
 
     .edu-status__dot {

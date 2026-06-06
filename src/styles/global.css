@@ -273,3 +273,51 @@ ol {
   line-height: 0.95;
   color: var(--color-text-primary);
 }
+
+/* =============================================
+   PAGE LOADER — WebGL background readiness
+   ============================================= */
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0c0c12;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-out-expo);
+}
+
+body.loading .page-loader {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.page-loader__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgb(139 92 246 / 0.15);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader {
+    transition: none;
+  }
+
+  .page-loader__spinner {
+    animation: none;
+    opacity: 0;
+  }
+}

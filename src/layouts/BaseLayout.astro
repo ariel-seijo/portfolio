@@ -31,8 +31,70 @@ const { title, description } = Astro.props;
 
     <title>{title ?? "Ariel Seijo — Full Stack Engineer"}</title>
   </head>
-  <body>
+  <body class="loading">
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader__spinner"></div>
+    </div>
     <DarkVeilBackground />
     <slot />
+
+    <script>
+      (function () {
+        var motionQuery = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+
+        function observeAll() {
+          document
+            .querySelectorAll(".stagger-children, .reveal-item")
+            .forEach(function (el) {
+              if (motionQuery.matches) {
+                el.classList.add("revealed");
+              } else {
+                observer.observe(el);
+              }
+            });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", observeAll);
+        } else {
+          observeAll();
+        }
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var body = document.body;
+        var done = false;
+
+        function finish() {
+          if (done) return;
+          done = true;
+          body.classList.remove("loading");
+        }
+
+        window.addEventListener("darkveil-ready", finish, { once: true });
+
+        // Safety fallback — 8 second timeout
+        setTimeout(finish, 8000);
+      })();
+    </script>
   </body>
 </html>

@@ -83,7 +83,7 @@ export default function ContactForm() {
 
   return (
     <section id="contacto" className="section-wrapper contact-section">
-      <div className="section-heading">
+      <div className="section-heading reveal-item">
         <h2 className="title-block">
           <span className="bracket bracket--open" aria-hidden="true">
             &lt;

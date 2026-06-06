@@ -93,15 +93,17 @@ function TechCard({ id, name, color }) {
 
 export default function TechCardGrid() {
   return (
-    <div className="tech-card-grid">
-      {TECH_DATA.map((tech) => (
-        <TechCard
-          key={tech.id}
-          id={tech.id}
-          name={tech.name}
-          color={tech.color}
-        />
-      ))}
+    <div className="tech-card-grid-wrapper reveal-item">
+      <div className="tech-card-grid">
+        {TECH_DATA.map((tech) => (
+          <TechCard
+            key={tech.id}
+            id={tech.id}
+            name={tech.name}
+            color={tech.color}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -12,6 +12,11 @@
   padding: 0 var(--content-padding);
 }
 
+.gallery-grid.revealed .gallery-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* ── Card ── */
 .gallery-card {
   --card-index: 0;
@@ -23,12 +28,14 @@
   border: 1px solid var(--color-border-default);
   border-radius: 14px;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
   transition:
+    opacity 0.6s var(--ease-out-expo),
+    transform 0.6s var(--ease-out-expo),
     border-color 0.35s var(--ease-out-quint),
-    box-shadow 0.35s var(--ease-out-quint),
-    transform 0.35s var(--ease-out-quint);
-  animation: card-enter 0.6s var(--ease-out-expo) both;
-  animation-delay: calc(var(--card-index) * 120ms + 100ms);
+    box-shadow 0.35s var(--ease-out-quint);
+  transition-delay: calc(var(--card-index) * 120ms + 100ms);
 }
 
 .gallery-card:hover {
@@ -287,21 +294,6 @@
   color: var(--color-text-primary);
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* =============================================
-   ENTRANCE ANIMATION
-   ============================================= */
-
-@keyframes card-enter {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 /* =============================================

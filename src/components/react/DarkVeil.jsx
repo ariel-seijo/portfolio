@@ -83,6 +83,7 @@ export default function DarkVeil({
   resolutionScale = 1,
 }) {
   const ctnDom = useRef(null);
+  const readyRef = useRef(false);
 
   useEffect(() => {
     const container = ctnDom.current;
@@ -135,6 +136,10 @@ export default function DarkVeil({
       program.uniforms.uScanFreq.value = scanlineFrequency;
       program.uniforms.uWarp.value = warpAmount;
       renderer.render({ scene: mesh });
+      if (!readyRef.current) {
+        readyRef.current = true;
+        window.dispatchEvent(new CustomEvent("darkveil-ready"));
+      }
       frame = requestAnimationFrame(loop);
     }
 
