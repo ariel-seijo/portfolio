@@ -7,7 +7,7 @@
   position: relative;
   max-width: 1200px;
   margin-inline: auto;
-  padding: var(--space-12) var(--content-padding);
+  padding: clamp(var(--space-8), 5vh, var(--space-12)) var(--content-padding);
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
@@ -17,8 +17,9 @@
 /* ── Grid ── */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: var(--space-16);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  gap: clamp(var(--space-8), 4vw, var(--space-16));
+  width: 100%;
 }
 
 /* =============================================
@@ -343,7 +344,7 @@
 
 .info-card-title {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: clamp(0.625rem, 1.4vw + 0.1rem, 0.6875rem);
   font-weight: 500;
   color: var(--color-accent);
   text-transform: uppercase;
@@ -490,13 +491,11 @@
 @media (max-width: 860px) {
   .contact-section {
     min-height: auto;
-    padding: var(--space-12) var(--content-padding);
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
     gap: var(--space-10);
-    padding: var(--space-6) var(--space-6) var(--space-5);
   }
 
   .contact-card-header {
@@ -504,13 +503,13 @@
   }
 
   .contact-info {
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: var(--space-4);
   }
 
   .info-card {
-    flex: 1 1 160px;
+    flex: none;
   }
 }
 
@@ -524,16 +523,8 @@
     padding: var(--space-5) var(--space-4);
   }
 
-  .contact-card-title {
-    font-size: 1.25rem;
-  }
-
   .contact-info {
-    flex-direction: column;
-  }
-
-  .info-card {
-    flex: none;
+    grid-template-columns: 1fr;
   }
 }
 

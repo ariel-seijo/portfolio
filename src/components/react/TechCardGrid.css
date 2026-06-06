@@ -4,8 +4,8 @@
 
 .tech-card-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: clamp(var(--space-2), 1.5vw, var(--space-3));
   max-width: 1000px;
   width: 100%;
   padding: 0 var(--content-padding);
@@ -41,7 +41,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
+  gap: clamp(var(--space-1), 1vw, var(--space-3));
   background: rgb(255 255 255 / 0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -80,7 +80,7 @@
   z-index: 2;
   pointer-events: none;
   background: radial-gradient(
-    circle 140px at var(--mx) var(--my),
+    circle clamp(80px, 18vw, 140px) at var(--mx) var(--my),
     color-mix(in srgb, var(--brand-color) 10%, transparent) 0%,
     transparent 70%
   );
@@ -96,8 +96,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: clamp(32px, 10vw, 48px);
+  height: clamp(32px, 10vw, 48px);
   flex-shrink: 0;
 }
 
@@ -118,7 +118,7 @@
    ============================================= */
 
 .tech-card__name {
-  font-size: var(--text-caption);
+  font-size: clamp(0.5625rem, 1.8vw + 0.1rem, var(--text-caption));
   font-weight: 500;
   color: var(--color-text-primary);
   text-align: center;
@@ -128,19 +128,13 @@
 }
 
 /* =============================================
-   RESPONSIVE
+   RESPONSIVE — auto-fit handles column count natively
    ============================================= */
-
-@media (max-width: 860px) {
-  .tech-card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
 
 @media (max-width: 480px) {
   .tech-card-grid {
-    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-2);
+    padding: 0 var(--space-4);
   }
 }
 

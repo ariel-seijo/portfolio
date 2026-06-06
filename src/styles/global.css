@@ -21,6 +21,7 @@ html {
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--navbar-height) + 2rem);
   color-scheme: dark;
 }
 
@@ -212,13 +213,7 @@ ol {
 }
 
 .section-heading .title-main {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-}
-
-@media (max-width: 640px) {
-  .section-heading .title-main {
-    font-size: clamp(1.8rem, 8vw, 2.8rem);
-  }
+  font-size: clamp(1.8rem, 5vw + 0.5rem, 3.6rem);
 }
 
 .title-block {
@@ -273,8 +268,8 @@ ol {
 }
 
 .title-main {
-  font-size: clamp(1rem, 7vw, 2.8rem);
+  font-size: clamp(1.4rem, 5vw + 0.3rem, 2.6rem);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 0.95;
   color: var(--color-text-primary);
 }

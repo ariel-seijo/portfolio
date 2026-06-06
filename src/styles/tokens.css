@@ -58,12 +58,12 @@
   --font-mono:
     "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
 
-  /* === TYPE SCALE === */
-  --text-hero: clamp(4.7rem, 7vw, 3.5rem);
-  --text-display: clamp(2.5rem, 5vw, 4rem);
-  --text-h1: 2rem;
-  --text-h2: 1.5rem;
-  --text-h3: 1.125rem;
+  /* === TYPE SCALE — Fluid, no breakpoint stepping === */
+  --text-hero: clamp(2.2rem, 6vw + 0.5rem, 4.5rem);
+  --text-display: clamp(1.8rem, 4.5vw + 0.4rem, 3.8rem);
+  --text-h1: clamp(1.625rem, 2.8vw + 0.5rem, 2.35rem);
+  --text-h2: clamp(1.25rem, 2vw + 0.4rem, 1.75rem);
+  --text-h3: clamp(1.0625rem, 1.2vw + 0.35rem, 1.25rem);
   --text-body: 1rem;
   --text-body-sm: 0.875rem;
   --text-caption: 0.75rem;

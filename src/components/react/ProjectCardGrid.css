@@ -5,10 +5,11 @@
 /* ── Grid ── */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(var(--space-5), 3vw, var(--space-8));
   max-width: 1200px;
-  padding: 0;
+  width: 100%;
+  padding: 0 var(--content-padding);
 }
 
 /* ── Card ── */
@@ -57,7 +58,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: fit-content;
+  object-fit: cover;
   transition:
     transform 0.5s var(--ease-out-quint),
     filter 0.5s var(--ease-out-quint);
@@ -307,22 +308,9 @@
    RESPONSIVE
    ============================================= */
 
-@media (max-width: 960px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-  }
-
-  .gallery-card__body {
-    padding: var(--space-4);
-  }
-}
-
 @media (max-width: 640px) {
   .gallery-grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    gap: var(--space-5);
+    padding: 0 var(--space-4);
   }
 
   .gallery-card__status {
@@ -337,7 +325,7 @@
   }
 
   .gallery-card__title {
-    font-size: 1rem;
+    font-size: clamp(0.9375rem, 3vw + 0.15rem, 1.125rem);
   }
 
   .gallery-card__desc {

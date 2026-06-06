@@ -86,8 +86,8 @@ import ContactForm from "@components/react/ContactForm.jsx";
 
   .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(var(--space-8), 4vw, var(--space-12));
     align-items: stretch;
     max-width: 1200px;
     width: 100%;
@@ -101,26 +101,25 @@ import ContactForm from "@components/react/ContactForm.jsx";
     align-items: flex-start;
     justify-content: center;
     gap: var(--space-6);
+    min-width: 0;
   }
 
   /* ---- Avatar ---- */
   .hero-avatar {
     display: flex;
     justify-content: center;
+    align-items: center;
     border-radius: 20px;
     overflow: hidden;
-    min-height: 0;
   }
 
   .hero-avatar img {
-    max-width: 100%;
-    max-height: 100%;
     object-fit: cover;
   }
 
   .hero-overline {
     font-family: var(--font-mono);
-    font-size: 2rem;
+    font-size: clamp(1rem, 3vw + 0.3rem, 2rem);
     font-weight: 500;
     color: var(--color-accent);
     text-transform: uppercase;
@@ -133,18 +132,18 @@ import ContactForm from "@components/react/ContactForm.jsx";
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.03em;
-    line-height: 0.8;
+    line-height: 0.85;
     margin: 0;
   }
 
   .hero-title-accent {
-    font-size: 3.2rem;
+    font-size: clamp(1.5rem, 4vw + 0.3rem, 3.2rem);
     color: var(--color-accent);
   }
 
   .hero-subtitle {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 2vw + 0.2rem, 0.875rem);
     font-weight: 500;
     color: var(--color-text-primary);
     text-transform: uppercase;
@@ -153,7 +152,7 @@ import ContactForm from "@components/react/ContactForm.jsx";
   }
 
   .hero-description {
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 2.5vw + 0.2rem, 1rem);
     color: var(--color-text-tertiary);
     line-height: 1.7;
     max-width: 34rem;
@@ -179,46 +178,72 @@ import ContactForm from "@components/react/ContactForm.jsx";
   }
 
   /* ---- Responsive ---- */
-  @media (max-width: 960px) {
+  @media (max-width: 1024px) {
+    .hero-avatar {
+      display: none;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+      align-items: center;
+      text-align: center;
+    }
+
     .hero-title {
-      font-size: 3rem;
+      font-size: clamp(2.8rem, 8vw + 0.5rem, 5.5rem);
     }
 
     .hero-title-accent {
-      font-size: 2.1rem;
+      font-size: clamp(2rem, 6vw + 0.3rem, 4rem);
+    }
+
+    .hero-description {
+      font-size: clamp(1rem, 3vw + 0.3rem, 1.35rem);
+      margin-inline: auto;
+      max-width: 44rem;
+    }
+
+    .hero-actions {
+      justify-content: center;
     }
   }
 
   @media (max-width: 768px) {
     .hero-grid {
-      grid-template-columns: 1fr;
       gap: var(--space-8);
-    }
-
-    .hero-avatar {
-      order: -1;
-      max-width: 280px;
-      aspect-ratio: 1;
-      justify-self: center;
     }
   }
 
   @media (max-width: 640px) {
+    .hero-section {
+      height: 100vh;
+    }
+    .hero-grid {
+      place-items: center;
+    }
+
     .hero-content {
       gap: var(--space-4);
+      justify-content: center;
     }
 
-    .hero-subtitle {
-      font-size: 1.05rem;
+    .hero-title {
+      font-size: clamp(2.3rem, 3.5vw, 2rem);
     }
 
+    .hero-title-accent {
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+    }
     .hero-description {
-      font-size: 0.9375rem;
+      font-size: clamp(0.875rem, 3.5vw, 1rem);
     }
 
     .hero-actions {
       flex-direction: column;
-      align-items: stretch;
+      align-items: center;
     }
 
     .btn {
@@ -227,12 +252,7 @@ import ContactForm from "@components/react/ContactForm.jsx";
 
     .hero-stats {
       gap: var(--space-6);
-      justify-content: flex-start;
-    }
-
-    .hero-avatar {
-      max-width: 220px;
-      aspect-ratio: 1;
+      justify-content: center;
     }
   }
 </style>
@@ -255,7 +275,7 @@ import ContactForm from "@components/react/ContactForm.jsx";
     display: flex;
     align-items: center;
     justify-content: center;
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 0.5rem;
   }
 
   .section-wrapper--alt {
@@ -281,7 +301,7 @@ import ContactForm from "@components/react/ContactForm.jsx";
   }
 
   .animated-counter__number {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw + 0.3rem, 2.5rem);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.02em;
@@ -290,7 +310,7 @@ import ContactForm from "@components/react/ContactForm.jsx";
   }
 
   .animated-counter__label {
-    font-size: 0.8125rem;
+    font-size: clamp(0.6875rem, 1.5vw + 0.15rem, 0.8125rem);
     font-weight: 400;
     color: var(--color-text-tertiary);
     letter-spacing: 0.01em;
@@ -301,10 +321,6 @@ import ContactForm from "@components/react/ContactForm.jsx";
       min-height: auto;
       max-width: 100%;
       padding-block: var(--space-10);
-    }
-
-    .animated-counter__number {
-      font-size: 1.75rem;
     }
   }
 </style>
