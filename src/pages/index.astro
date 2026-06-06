@@ -7,6 +7,7 @@ import HeroSection from "@components/sections/HeroSection.astro";
 import Profile from "@components/sections/Profile.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import ContactForm from "@components/react/ContactForm.jsx";
+import SocialCircles from "@components/react/SocialCircles.jsx";
 
 import { PERSONAL } from "@data/personal";
 ---
@@ -16,6 +17,7 @@ import { PERSONAL } from "@data/personal";
   description="Desarrollador Full Stack especializado en Aplicaciones Web. Soluciones a problemas reales que equilibran experiencia de usuario, accesibilidad, diseño, SEO, seguridad y performance."
 >
   <Navbar />
+  <SocialCircles client:load />
 
   <main class="page-container">
     <HeroSection />

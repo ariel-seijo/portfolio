@@ -55,23 +55,26 @@ const { name, jobTitle, bio, avatar, terminalTitle } = PERSONAL;
         <p class="profile-subtitle stagger-2">{bio}</p>
 
         <div class="stats-row stagger-3">
-          {STATS.map((stat) => {
-            const variantClass = stat.variant === "default"
-              ? "stat-card"
-              : `stat-card stat-card--${stat.variant}`;
-            return (
-              <div class={variantClass}>
-                <AnimatedCounter
-                  target={stat.target}
-                  prefix={stat.prefix ?? ""}
-                  suffix={stat.suffix ?? ""}
-                  label={stat.label}
-                  duration={stat.duration ?? 2500}
-                  client:load
-                />
-              </div>
-            );
-          })}
+          {
+            STATS.map((stat) => {
+              const variantClass =
+                stat.variant === "default"
+                  ? "stat-card"
+                  : `stat-card stat-card--${stat.variant}`;
+              return (
+                <div class={variantClass}>
+                  <AnimatedCounter
+                    target={stat.target}
+                    prefix={stat.prefix ?? ""}
+                    suffix={stat.suffix ?? ""}
+                    label={stat.label}
+                    duration={stat.duration ?? 2500}
+                    client:load
+                  />
+                </div>
+              );
+            })
+          }
         </div>
       </div>
     </div>
@@ -447,6 +450,10 @@ const { name, jobTitle, bio, avatar, terminalTitle } = PERSONAL;
   }
 
   @media (max-width: 640px) {
+    .profile-content-inner .title-main {
+      font-size: clamp(1rem, 4.5vw + 0.3rem, 1.27rem);
+    }
+
     .profile-grid {
       padding: var(--space-6) var(--space-6);
       gap: var(--space-8);

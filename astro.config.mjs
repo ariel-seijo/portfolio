@@ -6,6 +6,7 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   integrations: [react()],
+  devToolbar: { enabled: false },
   compressHTML: true,
   build: {
     inlineStylesheets: "auto",

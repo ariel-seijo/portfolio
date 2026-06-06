@@ -22,6 +22,8 @@ html {
   text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--navbar-height) + 2rem);
+  scrollbar-color: #8b5cf6 #09090b;
+  scrollbar-width: thin;
   color-scheme: dark;
 }
 
@@ -123,16 +125,16 @@ ol {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(255 255 255 / 0.08);
+  background: #8b5cf6;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(255 255 255 / 0.15);
+  background: #a78bfa;
 }
 
 /* === BUTTONS === */
@@ -266,7 +268,7 @@ ol {
 }
 
 .title-main {
-  font-size: clamp(1.4rem, 5vw + 0.3rem, 2.6rem);
+  font-size: clamp(1rem, 5vw + 0.3rem, 2.6rem);
   font-weight: 800;
   line-height: 0.95;
   color: var(--color-text-primary);
