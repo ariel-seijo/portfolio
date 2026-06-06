@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     images: [
       { src: "/portfolio-1.webp", alt: "Vista principal de este portfolio" },
     ],
-    demoUrl: "https://3d.arielseijo.dev",
-    codeUrl: "https://github.com/arielseijo/portfolio-3d",
+    demoUrl: "https://ariel-seijo.vercel.app",
+    codeUrl: "https://github.com/ariel-seijo/portfolio",
   },
 ]
