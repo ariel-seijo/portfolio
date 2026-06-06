@@ -66,19 +66,17 @@ export const PROJECTS: Project[] = [
     codeUrl: "https://github.com/ariel-seijo/Oid-Mortales",
   },
   {
-    id: "portfolio-3d",
-    title: "Portfolio 3D Interactivo",
+    id: "portfolio",
+    title: "Portfolio de Desarrollador",
     status: "deployed",
     description:
-      "Portfolio personal con escenas 3D interactivas usando Three.js, scroll narrativo y transiciones cinematográficas entre secciones.",
+      "Landing page con formulario de contacto funcional y secciones interactivas. Diseño sencillo y directo para encontrar la información rápidamente.",
     longDescription:
-      "Un portfolio interactivo que utiliza Three.js y React Three Fiber para renderizar escenas 3D envolventes que reaccionan al scroll del usuario. Las transiciones cinematográficas entre secciones, combinadas con animaciones fluidas y una narrativa visual cuidadosamente diseñada, crean una experiencia inmersiva que destaca el trabajo creativo.",
-    accentColor: "#f59e0b",
-    techStack: ["astro", "react", "typescript", "tailwindcss"],
+      "Portfolio personal estilo landing-page con formulario de contacto funcional y secciones interactivas. Diseño sencillo y directo para encontrar la información rápidamente.",
+    accentColor: "var(--color-accent)",
+    techStack: ["astro", "react", "typescript"],
     images: [
-      { src: "/imagen-ejemplo.jpg", alt: "Vista hero con escena 3D" },
-      { src: "/imagen-ejemplo.jpg", alt: "Sección de proyectos con animaciones" },
-      { src: "/imagen-ejemplo.jpg", alt: "Página de contacto con formulario" },
+      { src: "/portfolio-1.png", alt: "Vista principal de este portfolio" },
     ],
     demoUrl: "https://3d.arielseijo.dev",
     codeUrl: "https://github.com/arielseijo/portfolio-3d",
