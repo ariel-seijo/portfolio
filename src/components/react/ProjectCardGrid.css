@@ -13,8 +13,7 @@
 }
 
 .gallery-grid.revealed .gallery-card {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  animation-play-state: running;
 }
 
 /* ── Card ── */
@@ -30,12 +29,17 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(30px) scale(0.97);
+
+  /* Entrance stagger — animation-based with delay */
+  animation: card-entrance 0.6s var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--card-index) * 120ms + 100ms);
+  animation-play-state: paused;
+
+  /* Hover — transition-based, no delay */
   transition:
-    opacity 0.6s var(--ease-out-expo),
-    transform 0.6s var(--ease-out-expo),
-    border-color 0.35s var(--ease-out-quint),
-    box-shadow 0.35s var(--ease-out-quint);
-  transition-delay: calc(var(--card-index) * 120ms + 100ms);
+    border-color 0.22s var(--ease-out-quint),
+    box-shadow 0.22s var(--ease-out-quint),
+    transform 0.22s var(--ease-out-quint);
 }
 
 .gallery-card:hover {
@@ -45,6 +49,13 @@
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 0 60px var(--card-accent-muted);
   transform: translateY(-4px);
+}
+
+@keyframes card-entrance {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ── Media (16:9 image container) ── */
@@ -166,6 +177,7 @@
 
 /* ── Body ── */
 .gallery-card__body {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -187,10 +199,36 @@
   color: var(--color-text-secondary);
   line-height: 1.65;
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+}
+
+/* Offscreen clone used for measuring truncation */
+.gallery-card__desc--measure {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Inline "Ver más / Ver menos" button inside the paragraph */
+.gallery-card__inline-expand {
+  display: inline;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 550;
+  color: var(--card-accent);
+  cursor: pointer;
+  line-height: inherit;
+  vertical-align: baseline;
+  transition: color 0.2s var(--ease-out-quint);
+}
+
+.gallery-card__inline-expand:hover {
+  color: color-mix(in srgb, var(--card-accent) 85%, white);
 }
 
 /* ── Tech pills ── */

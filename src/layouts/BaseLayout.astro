@@ -27,9 +27,12 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Ariel Seijo — Full Stack Engineer" />
+    <meta
+      property="og:site_name"
+      content="Ariel Seijo — Desarrollador Full Stack"
+    />
 
-    <title>{title ?? "Ariel Seijo — Full Stack Engineer"}</title>
+    <title>{title ?? "Ariel Seijo — Desarrollador Full Stack"}</title>
   </head>
   <body class="loading">
     <div class="page-loader" aria-hidden="true">
@@ -40,9 +43,7 @@ const { title, description } = Astro.props;
 
     <script>
       (function () {
-        var motionQuery = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        );
+        var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
         var observer = new IntersectionObserver(
           function (entries) {

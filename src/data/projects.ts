@@ -22,7 +22,7 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: "electroshop",
-    title: "ElectroShop",
+    title: "ElectroShop - Tienda de Hardware",
     status: "deployed",
     description:
       "Desarrollo full stack de ecommerce con carrito de compras, autenticación, gestión de inventario, panel de admin con CRUD propio y checkout simulado.",
@@ -49,18 +49,18 @@ export const PROJECTS: Project[] = [
     title: "Oid Mortales - Test de Nivelación Inglés",
     status: "deployed",
     description:
-      "Plataforma para realizar un test de nivelación de inglés mientras aprendes historia argentina. Cuatro tipos de ejercicios y resultados basados en el CEFR.",
+      "Plataforma que combina inglés con historia argentina. Test nivelatorio con cuatro variantes de ejercicios, treinta en total, y resultados basados en el CEFR.",
     longDescription:
       "Plataforma de aprendizaje que busca cambiar la forma de enseñar y aprender, mezclando el idioma con la historia para aprender ambas al mismo tiempo. Actualmente se puede realizar un test de nivelación de inglés con cuatro tipo de ejercicios diferentes y temática de historia argentina, con resultados basados en el CEFR.",
     accentColor: "#00aeff",
     techStack: ["react", "nextjs", "typescript", "tailwindcss"],
     images: [
-      { src: "/oid-1.png", alt: "Documentación interactiva de la API" },
-      { src: "/oid-2.png", alt: "Documentación interactiva de la API" },
-      { src: "/oid-3.png", alt: "Documentación interactiva de la API" },
-      { src: "/oid-4.png", alt: "Documentación interactiva de la API" },
-      { src: "/oid-5.png", alt: "Documentación interactiva de la API" },
-      { src: "/oid-6.png", alt: "Documentación interactiva de la API" },
+      { src: "/oid-1.png", alt: "Página principal de Oid Mortales" },
+      { src: "/oid-2.png", alt: "Ejemplo 1 de ejercicio del test"},
+      { src: "/oid-3.png", alt: "Ejemplo 2 de ejercicio del test" },
+      { src: "/oid-4.png", alt: "Ejemplo 3 de ejercicio del test" },
+      { src: "/oid-5.png", alt: "Ejemplo 4 de ejercicio del test" },
+      { src: "/oid-6.png", alt: "Pagina de resultados del test de Oid Mortales" },
     ],
     demoUrl: "https://oidmortales.vercel.app/",
     codeUrl: "https://github.com/ariel-seijo/Oid-Mortales",
