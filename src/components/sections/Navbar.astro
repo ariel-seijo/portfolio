@@ -63,11 +63,12 @@ import { NAV_LINKS } from "@data/site";
       const trackRect = track.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
 
-      // Center the fixed-width pill over the active link
-      const pillWidth = indicator.offsetWidth;
-      const linkCenter = linkRect.left - trackRect.left + linkRect.width / 2;
-      const left = linkCenter - pillWidth / 2;
+      // Indicator has left:5px in CSS, so subtract it from the offset.
+      // Also subtract 1px per side for the indicator's own border.
+      const left = linkRect.left - trackRect.left - 5;
+      const width = linkRect.width - 2;
 
+      indicator.style.width = `${width}px`;
       indicator.style.transform = `translateX(${left}px)`;
     }
 
@@ -219,13 +220,14 @@ import { NAV_LINKS } from "@data/site";
     position: absolute;
     top: 5px;
     bottom: 5px;
-    width: 64px;
+    left: 5px;
     background: rgba(255, 255, 255, 1);
     border-radius: 12px;
     border: 1px solid rgb(255 255 255 / 0.05);
     opacity: 0;
     transition:
-      transform 0.35s var(--ease-out-quint),
+      transform 0.3s var(--ease-out-quint),
+      width 0.3s var(--ease-out-quint),
       opacity 0.12s var(--ease-out-quint);
     pointer-events: none;
   }
