@@ -8,7 +8,7 @@
 
 .tech-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: clamp(var(--space-2), 1.5vw, var(--space-3));
   max-width: 1000px;
   width: 100%;
@@ -131,6 +131,7 @@
 
 @media (max-width: 480px) {
   .tech-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
     gap: var(--space-2);
     padding: 0 var(--space-4);
   }
