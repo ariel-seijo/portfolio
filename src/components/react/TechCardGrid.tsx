@@ -3,12 +3,18 @@ import { TECH_DATA } from "@data/techData";
 import { getSvglIcon, scopeSvgIds } from "@data/svglIcons";
 import "./TechCardGrid.css";
 
-function TechCard({ id, name, color }) {
-  const cardRef = useRef(null);
-  const innerRef = useRef(null);
-  const rafRef = useRef(null);
+interface TechCardProps {
+  id: string;
+  name: string;
+  color: string;
+}
 
-  const handleMouseMove = useCallback((e) => {
+function TechCard({ id, name, color }: TechCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (rafRef.current) return;
     rafRef.current = requestAnimationFrame(() => {
       const card = cardRef.current;
@@ -73,12 +79,12 @@ function TechCard({ id, name, color }) {
         "--brand-color": color,
         "--mx": "-9999px",
         "--my": "-9999px",
-      }}
+      } as React.CSSProperties}
     >
       <div
         ref={innerRef}
         className="tech-card__inner"
-        style={{ "--rx": "0deg", "--ry": "0deg" }}
+        style={{ "--rx": "0deg", "--ry": "0deg" } as React.CSSProperties}
       >
         <div className="tech-card__spotlight" aria-hidden="true" />
         <div

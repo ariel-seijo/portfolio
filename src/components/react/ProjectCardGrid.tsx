@@ -1,7 +1,8 @@
-import ProjectCard from "./projects/ProjectCard.jsx";
+import type { Project } from "@data/projects";
+import ProjectCard from "./projects/ProjectCard.tsx";
 import "./ProjectCardGrid.css";
 
-export default function ProjectCardGrid({ projects }) {
+export default function ProjectCardGrid({ projects }: { projects: Project[] }) {
   if (!projects?.length) return null;
 
   return (

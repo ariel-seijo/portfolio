@@ -1,6 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl';
 
+export interface DarkVeilProps {
+  hueShift?: number;
+  noiseIntensity?: number;
+  scanlineIntensity?: number;
+  speed?: number;
+  scanlineFrequency?: number;
+  warpAmount?: number;
+  resolutionScale?: number;
+}
+
 const vertex = `
 attribute vec2 position;
 void main(){gl_Position=vec4(position,0.0,1.0);}
@@ -82,8 +92,8 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
-}) {
-  const ctnDom = useRef(null);
+}: DarkVeilProps) {
+  const ctnDom = useRef<HTMLDivElement>(null);
   const readyRef = useRef(false);
 
   useEffect(() => {
@@ -127,7 +137,7 @@ export default function DarkVeil({
     resize();
 
     const start = performance.now();
-    let frame;
+    let frame: number;
 
     function loop() {
       program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;

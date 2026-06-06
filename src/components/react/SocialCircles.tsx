@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { PERSONAL } from "@data/personal";
-import { MailIcon, GitHubIcon, LinkedInIcon } from "./icons/StatusIcons.jsx";
+import { MailIcon, GitHubIcon, LinkedInIcon } from "./icons/StatusIcons.tsx";
 
-const socialLinks = [
+const socialLinks: { href: string; label: string; icon: React.ComponentType<{ size?: number }> | null; external: boolean }[] = [
   {
     href: PERSONAL.social.linkedin,
     label: "LinkedIn",
@@ -31,7 +31,7 @@ const socialLinks = [
 ];
 
 const enterSpring = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 420,
   damping: 22,
   mass: 0.8,
@@ -40,7 +40,7 @@ const enterSpring = {
 const idleFloat = {
   y: [0, -4, 0],
   transition: {
-    y: { repeat: Infinity, duration: 2, ease: "easeInOut", repeatType: "mirror" },
+    y: { repeat: Infinity, duration: 2, ease: "easeInOut" as const, repeatType: "mirror" as const },
   },
 };
 
@@ -52,7 +52,7 @@ export default function SocialCircles() {
 
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);

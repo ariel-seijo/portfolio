@@ -1,6 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 
-function easeOutExpo(t) {
+export interface AnimatedCounterProps {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+  label?: string;
+  duration?: number;
+  once?: boolean;
+}
+
+function easeOutExpo(t: number): number {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
 }
 
@@ -11,11 +20,11 @@ export default function AnimatedCounter({
   label = "",
   duration = 2000,
   once = true,
-}) {
+}: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const startedRef = useRef(false);
-  const rafRef = useRef(null);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -29,7 +38,7 @@ export default function AnimatedCounter({
 
           const startTime = performance.now();
 
-          const step = (now) => {
+          const step = (now: number) => {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
             const eased = easeOutExpo(progress);

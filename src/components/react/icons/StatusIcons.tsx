@@ -3,7 +3,13 @@
  * Each icon accepts a `size` prop (default 16) for consistency.
  */
 
-export function SendIcon({ size = 16, ...props }) {
+import type { SVGProps } from "react";
+
+export interface IconProps extends SVGProps<SVGSVGElement> {
+  size?: number;
+}
+
+export function SendIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -24,7 +30,7 @@ export function SendIcon({ size = 16, ...props }) {
   );
 }
 
-export function CheckIcon({ size = 16, ...props }) {
+export function CheckIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -46,7 +52,7 @@ export function CheckIcon({ size = 16, ...props }) {
   );
 }
 
-export function ErrorIcon({ size = 16, ...props }) {
+export function ErrorIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -67,7 +73,7 @@ export function ErrorIcon({ size = 16, ...props }) {
   );
 }
 
-export function CheckmarkIcon({ size = 14, ...props }) {
+export function CheckmarkIcon({ size = 14, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -88,7 +94,7 @@ export function CheckmarkIcon({ size = 14, ...props }) {
   );
 }
 
-export function MailIcon({ size = 16, ...props }) {
+export function MailIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -109,7 +115,7 @@ export function MailIcon({ size = 16, ...props }) {
   );
 }
 
-export function MapPinIcon({ size = 16, ...props }) {
+export function MapPinIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -129,7 +135,7 @@ export function MapPinIcon({ size = 16, ...props }) {
   );
 }
 
-export function GitHubIcon({ size = 18, ...props }) {
+export function GitHubIcon({ size = 18, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -150,7 +156,7 @@ export function GitHubIcon({ size = 18, ...props }) {
   );
 }
 
-export function LinkedInIcon({ size = 18, ...props }) {
+export function LinkedInIcon({ size = 18, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -180,7 +186,7 @@ export function LinkedInIcon({ size = 18, ...props }) {
   );
 }
 
-export function DownloadIcon({ size = 16, ...props }) {
+export function DownloadIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -207,7 +213,7 @@ export function DownloadIcon({ size = 16, ...props }) {
   );
 }
 
-export function CopyIcon({ size = 14, ...props }) {
+export function CopyIcon({ size = 14, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -235,7 +241,7 @@ export function CopyIcon({ size = 14, ...props }) {
   );
 }
 
-export function ExternalLinkIcon({ size = 14, ...props }) {
+export function ExternalLinkIcon({ size = 14, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -256,7 +262,7 @@ export function ExternalLinkIcon({ size = 14, ...props }) {
   );
 }
 
-export function GalleryGridIcon({ size = 12, ...props }) {
+export function GalleryGridIcon({ size = 12, ...props }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
       <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.5" />
@@ -267,7 +273,7 @@ export function GalleryGridIcon({ size = 12, ...props }) {
   );
 }
 
-export function ChevronDownIcon({ size = 14, ...props }) {
+export function ChevronDownIcon({ size = 14, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -288,7 +294,7 @@ export function ChevronDownIcon({ size = 14, ...props }) {
   );
 }
 
-export function ChevronUpIcon({ size = 14, ...props }) {
+export function ChevronUpIcon({ size = 14, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -309,7 +315,7 @@ export function ChevronUpIcon({ size = 14, ...props }) {
   );
 }
 
-export function DocumentIcon({ size = 16, ...props }) {
+export function DocumentIcon({ size = 16, ...props }: IconProps) {
   return (
     <svg
       width={size}

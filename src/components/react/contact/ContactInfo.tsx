@@ -9,9 +9,9 @@ import {
   DownloadIcon,
   CopyIcon,
   CheckmarkIcon,
-} from "../icons/StatusIcons.jsx";
+} from "../icons/StatusIcons.tsx";
 
-export default function ContactInfo({ className }) {
+export default function ContactInfo({ className }: { className?: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = useCallback(async () => {

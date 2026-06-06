@@ -1,36 +1,40 @@
 import { useState, useRef } from "react";
 import { CONTACT_TEXT, MESSAGE_MAX, MESSAGE_MIN } from "@data/contact";
-import ContactInfo from "./contact/ContactInfo.jsx";
-import { SendIcon, CheckIcon, ErrorIcon } from "./icons/StatusIcons.jsx";
+import type { FormStatus } from "@data/contact";
+import ContactInfo from "./contact/ContactInfo.tsx";
+import { SendIcon, CheckIcon, ErrorIcon } from "./icons/StatusIcons.tsx";
 import "./ContactForm.css";
 
-function validate({ name, email, message }) {
+function validate({ name, email, message }: { name: FormDataEntryValue | null; email: FormDataEntryValue | null; message: FormDataEntryValue | null }): string | null {
   const { validation } = CONTACT_TEXT;
-  if (!name.trim() || !email.trim() || !message.trim()) {
+  if (!name?.toString().trim() || !email?.toString().trim() || !message?.toString().trim()) {
     return validation.required;
   }
-  if (!email.includes("@") || !email.includes(".")) {
+  const emailStr = email.toString();
+  if (!emailStr.includes("@") || !emailStr.includes(".")) {
     return validation.invalidEmail;
   }
-  if (message.trim().length < MESSAGE_MIN) {
+  const msgStr = message.toString().trim();
+  if (msgStr.length < MESSAGE_MIN) {
     return validation.messageMin;
   }
-  if (message.length > MESSAGE_MAX) {
+  if (message.toString().length > MESSAGE_MAX) {
     return validation.messageMax(MESSAGE_MAX);
   }
   return null;
 }
 
 export default function ContactForm() {
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [charCount, setCharCount] = useState(0);
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const form = formRef.current;
+    if (!form) return;
     const data = new FormData(form);
     const fields = {
       name: data.get("name"),
@@ -63,7 +67,7 @@ export default function ContactForm() {
       form.reset();
       setCharCount(0);
     } catch (err) {
-      setErrorMsg(err.message || CONTACT_TEXT.errorDefault);
+      setErrorMsg(err instanceof Error ? err.message : CONTACT_TEXT.errorDefault);
       setStatus("error");
     }
   }

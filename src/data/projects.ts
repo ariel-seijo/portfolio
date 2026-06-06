@@ -1,9 +1,9 @@
-interface ProjectImage {
+export interface ProjectImage {
   src: string
   alt: string
 }
 
-type ProjectStatus = "deployed" | "development"
+export type ProjectStatus = "deployed" | "development"
 
 export interface Project {
   id: string

@@ -1,25 +1,26 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { createPortal } from "react-dom"
+import type { Project, ProjectImage } from "@data/projects"
 import "./ProjectLightbox.css"
+
+type LightboxPhase = "idle" | "entering" | "open" | "exiting"
 
 /**
  * Lightbox fullscreen para galería de imágenes de proyectos.
  *
  * Escucha eventos `open-lightbox` en window:
  *   detail: { projectId: string, imageIndex: number }
- *
- * @param {{ projects: import("@data/projects").Project[] }} props
  */
-export default function ProjectLightbox({ projects }) {
+export default function ProjectLightbox({ projects }: { projects: Project[] }) {
   const [open, setOpen] = useState(false)
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState<ProjectImage[]>([])
   const [index, setIndex] = useState(0)
-  const [phase, setPhase] = useState("idle") // idle | entering | open | exiting
-  const [direction, setDirection] = useState(0) // -1 prev, 0 none, 1 next
-  const overlayRef = useRef(null)
+  const [phase, setPhase] = useState<LightboxPhase>("idle")
+  const [direction, setDirection] = useState<-1 | 0 | 1>(0)
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   /* ── Abrir ─────────────────────────────────── */
-  const handleOpen = useCallback((projectImages, startIndex = 0) => {
+  const handleOpen = useCallback((projectImages: ProjectImage[], startIndex = 0) => {
     setImages(projectImages)
     setIndex(startIndex)
     setDirection(0)
@@ -45,7 +46,7 @@ export default function ProjectLightbox({ projects }) {
 
   /* ── Navegar ────────────────────────────────── */
   const goTo = useCallback(
-    (newIndex) => {
+    (newIndex: number) => {
       if (newIndex === index || newIndex < 0 || newIndex >= images.length) return
       setDirection(newIndex > index ? 1 : -1)
       setIndex(newIndex)
@@ -58,14 +59,14 @@ export default function ProjectLightbox({ projects }) {
   const prev = useCallback(() => goTo(index - 1), [index, goTo])
 
   /* ── Click fuera de la imagen ───────────────── */
-  const handleOverlayClick = (e) => {
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === overlayRef.current) handleClose()
   }
 
   /* ── Teclado ────────────────────────────────── */
   useEffect(() => {
     if (!open) return
-    const onKey = (e) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose()
       if (e.key === "ArrowLeft") prev()
       if (e.key === "ArrowRight") next()
@@ -76,8 +77,9 @@ export default function ProjectLightbox({ projects }) {
 
   /* ── Escuchar eventos de apertura ───────────── */
   useEffect(() => {
-    const handler = (e) => {
-      const { projectId, imageIndex = 0 } = e.detail
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent<{ projectId: string; imageIndex?: number }>
+      const { projectId, imageIndex = 0 } = customEvent.detail
       const project = projects.find((p) => p.id === projectId)
       if (project?.images.length) handleOpen(project.images, imageIndex)
     }

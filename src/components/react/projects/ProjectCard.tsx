@@ -1,13 +1,14 @@
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import type { Project, ProjectStatus } from "@data/projects";
 import { getTechIcon } from "@data/techIcons";
 import {
   ExternalLinkIcon,
   GalleryGridIcon,
-} from "../icons/StatusIcons.jsx";
+} from "../icons/StatusIcons.tsx";
 
 const MAX_LINES = 3;
 
-function truncateAtLines(el, text, lineHeight, maxLines, suffix) {
+function truncateAtLines(el: HTMLElement, text: string, lineHeight: number, maxLines: number, suffix: string): string | null {
   const maxH = lineHeight * maxLines;
 
   el.textContent = text + suffix;
@@ -34,7 +35,7 @@ function truncateAtLines(el, text, lineHeight, maxLines, suffix) {
   return lo > 0 ? text.slice(0, lo).trimEnd() : text.slice(0, 1);
 }
 
-const STATUS_CONFIG = {
+const STATUS_CONFIG: Record<ProjectStatus, { label: string; dot: string; glow: string }> = {
   deployed: {
     label: "Produccion",
     dot: "var(--color-success)",
@@ -47,7 +48,7 @@ const STATUS_CONFIG = {
   },
 };
 
-function GitHubProjectIcon({ size = 14 }) {
+function GitHubProjectIcon({ size = 14 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -67,11 +68,11 @@ function GitHubProjectIcon({ size = 14 }) {
   );
 }
 
-export default function ProjectCard({ project, index }) {
-  const cardRef = useRef(null);
-  const measureRef = useRef(null);
+export default function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const cardRef = useRef<HTMLElement>(null);
+  const measureRef = useRef<HTMLParagraphElement>(null);
   const [expanded, setExpanded] = useState(false);
-  const [truncatedText, setTruncatedText] = useState(null);
+  const [truncatedText, setTruncatedText] = useState<string | null>(null);
 
   // Measure exact truncation point (hidden element, no flicker)
   useLayoutEffect(() => {
@@ -119,7 +120,7 @@ export default function ProjectCard({ project, index }) {
         "--card-accent": accent,
         "--card-accent-muted": `${accent}1a`,
         "--card-index": index,
-      }}
+      } as React.CSSProperties}
     >
       {/* ── Image 16:9 ── */}
       <div
@@ -128,7 +129,7 @@ export default function ProjectCard({ project, index }) {
         role="button"
         tabIndex={0}
         aria-label={`Ver galería de ${project.title}`}
-        onKeyDown={(e) => {
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             handleImageClick();
@@ -149,7 +150,7 @@ export default function ProjectCard({ project, index }) {
         {/* Status badge */}
         <span
           className="gallery-card__status"
-          style={{ "--status-dot": status.dot, "--status-glow": status.glow }}
+          style={{ "--status-dot": status.dot, "--status-glow": status.glow } as React.CSSProperties}
         >
           <span className="gallery-card__status-dot" aria-hidden="true" />
           {status.label}
@@ -238,7 +239,7 @@ export default function ProjectCard({ project, index }) {
               className="gallery-card__btn gallery-card__btn--demo"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ "--btn-accent": accent }}
+              style={{ "--btn-accent": accent } as React.CSSProperties}
             >
               <ExternalLinkIcon />
               Demo
