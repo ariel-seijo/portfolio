@@ -21,42 +21,42 @@ export const STRENGTHS: StrengthCard[] = [
     column: "hire",
     title: "Puedo adaptarme a cualquier desafío.",
     description:
-      "No importa el stack, el dominio ni la complejidad. Aprendo rápido, investigo a fondo y encuentro la forma de resolver lo que haga falta. Cada proyecto es una oportunidad de dominar algo nuevo.",
+      "Lo desconocido no me intimida. Si me piden algo que nunca he hecho antes, voy a investigar y aprender a hacerlo. No me limito a lo que conozco. Siempre estoy dispuesto a salir de mi zona de confort.",
     icon: "adapt",
   },
   {
     column: "hire",
     title: "Trabajar conmigo es cómodo.",
     description:
-      "Comunico claro, pregunto cuando no sé y documento lo que hago. No dejo cabos sueltos ni sorpresas de último momento. La confianza se construye con profesionalismo y transparencia.",
+      "Busco ser el compañero de trabajo que todos deseamos: Comunicativo, resolutivo y responsable. Me gusta transmitir seguridad y confianza a quienes trabajan conmigo, como lo haría un buen líder.",
     icon: "comfort",
   },
   {
     column: "hire",
     title: "Hago mucho más que programar.",
     description:
-      "Entiendo el negocio, pienso en el usuario, optimizo el SEO, cuido la accesibilidad y me preocupo por la performance. No solo entrego código: entrego soluciones completas que funcionan en el mundo real.",
+      "Me gusta diseñar, entiendo el negocio, me preocupo por la experiencia del usuario, cuido la accesibilidad y la performance. Pruebo todo lo que construyo. Soy muy bueno hallando bugs y proponiendo mejoras. Me fijo en los detalles que la gente suele ignorar.",
     icon: "multitool",
   },
   {
     column: "differentiate",
-    title: "Aprovecho la IA con criterio.",
+    title: "Utilizo la IA con criterio.",
     description:
-      "Uso inteligencia artificial a diario para acelerar mi trabajo, pero nunca a ciegas. Sé cuándo confiar, cuándo verificar y cuándo descartar. La IA es mi herramienta, no mi reemplazo.",
+      "La IA acelera mi trabajo y mi aprendizaje, pero yo tomo las decisiones. Optimizo mis consultas con prompt engineering, ahorrando tokens y consiguiendo resultados precisos.",
     icon: "ai",
   },
   {
     column: "differentiate",
-    title: "Me fijo en cada detalle.",
+    title: "Me preocupo por los detalles.",
     description:
-      "Un pixel fuera de lugar, una animación que no fluye, un contraste que falla. Nada se me escapa. La diferencia entre un producto aceptable y uno excelente está en los detalles que la mayoría ignora.",
+      "Presto atención a los pequeños detalles que marcan la diferencia entre un producto que simplemente funciona y uno que ofrece una experiencia de calidad para los usuarios.",
     icon: "detail",
   },
   {
     column: "differentiate",
-    title: "Soy muy autocrítico.",
+    title: "Sé buscar la información.",
     description:
-      "No entrego algo hasta que estoy convencido de que es lo mejor que puedo hacer. Me exijo más que nadie porque sé que siempre hay margen para mejorar. La autocomplacencia es enemiga del crecimiento.",
+      "Es mi habilidad más valiosa: encontrar las respuestas por mi cuenta. Soy consciente de todo lo que me falta por aprender y lejos de abrumarme, me apasiona saber que puedo seguir mejorando. Sin depender de nadie, más que de mi curiosidad.",
     icon: "critical",
   },
 ];
