@@ -5,6 +5,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Navbar from "@components/sections/Navbar.astro";
 import HeroSection from "@components/sections/HeroSection.astro";
 import Profile from "@components/sections/Profile.astro";
+import StrengthsSection from "@components/sections/StrengthsSection.astro";
 import ProjectsSection from "@components/sections/ProjectsSection.astro";
 import ContactForm from "@components/react/ContactForm.tsx";
 import SocialCircles from "@components/react/SocialCircles.tsx";
@@ -22,6 +23,7 @@ import { PERSONAL } from "@data/personal";
   <main class="page-container">
     <HeroSection />
     <Profile />
+    <StrengthsSection />
     <ProjectsSection />
     <ContactForm client:load />
   </main>
