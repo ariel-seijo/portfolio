@@ -1,5 +1,5 @@
 ---
-import { TESTIMONIALS, getAvatarColor } from "@data/testimonials";
+import { TESTIMONIALS } from "@data/testimonials";
 
 const PAGES: Array<typeof TESTIMONIALS> = [];
 for (let i = 0; i < TESTIMONIALS.length; i += 2) {
@@ -27,33 +27,41 @@ for (let i = 0; i < TESTIMONIALS.length; i += 2) {
           >
             {
               page.map((t) => {
-                const color = getAvatarColor(t.name);
                 return (
                   <div
                     class="testimonial-card"
-                    style={`--avatar-color: ${color}`}
                     role="article"
                     aria-label={`Testimonio de ${t.name}`}
                   >
                     <div class="card-header">
                       <div class="avatar" aria-hidden="true">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="24" cy="24" r="23" fill={color} opacity="0.15" />
-                          <circle cx="24" cy="24" r="21" fill={color} opacity="0.3" />
-                          <text
-                            x="24"
-                            y="24"
-                            text-anchor="middle"
-                            dominant-baseline="central"
-                            fill="white"
-                            font-size="16"
-                            font-family="Inter, -apple-system, sans-serif"
-                            font-weight="600"
-                          >{t.initials}</text>
-                        </svg>
+                        {t.photo ? (
+                          <img src={t.photo} alt="" width="48" height="48" loading="lazy" />
+                        ) : (
+                          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="23" fill="#8b5cf6" opacity="0.15" />
+                            <circle cx="24" cy="24" r="21" fill="#8b5cf6" opacity="0.3" />
+                            <text
+                              x="24"
+                              y="24"
+                              text-anchor="middle"
+                              dominant-baseline="central"
+                              fill="white"
+                              font-size="16"
+                              font-family="Inter, -apple-system, sans-serif"
+                              font-weight="600"
+                            >{t.initials}</text>
+                          </svg>
+                        )}
                       </div>
                       <div class="header-info">
-                        <span class="person-name">{t.name}</span>
+                        <span class="person-name">
+                          {t.name}
+                          <svg class="verified-badge" width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Verificado" role="img">
+                            <circle cx="11" cy="11" r="11" fill="#8b5cf6" />
+                            <path d="M6.5 11.5L9.5 14.5L15.5 8.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </span>
                         <a
                           href={t.linkedinUrl}
                           class="linkedin-btn"
@@ -280,15 +288,22 @@ for (let i = 0; i < TESTIMONIALS.length; i += 2) {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 2px var(--avatar-color, var(--color-accent));
+    box-shadow: 0 0 0 2px #8b5cf6;
     transition: box-shadow 0.3s var(--ease-out-quint);
   }
 
   .testimonial-card:hover .avatar {
-    box-shadow: 0 0 0 3px var(--avatar-color, var(--color-accent));
+    box-shadow: 0 0 0 3px #8b5cf6;
   }
 
   .avatar svg {
+    display: block;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 
@@ -309,6 +324,13 @@ for (let i = 0; i < TESTIMONIALS.length; i += 2) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .verified-badge {
+    flex-shrink: 0;
   }
 
   /* ---- LinkedIn ---- */
