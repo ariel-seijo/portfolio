@@ -9,8 +9,6 @@ dist/
 .env.local
 .env.*.local
 
-# Testimonial photos (excluded from repo)
-public/images/testimonials/
 
 # OS
 .DS_Store
