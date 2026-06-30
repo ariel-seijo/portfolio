@@ -33,7 +33,7 @@ export const PERSONAL: PersonalInfo = {
   fullName: "Hugo Ariel Seijo",
   email: "hariel.seijo@gmail.com",
   location: "Buenos Aires, Argentina",
-  cvPath: "/Hugo_Desarrollador_FullStack.pdf",
+  cvPath: "/Hugo_FullStack_Developer.pdf",
   avatar: {
     hero: "/avatar-img.webp",
     profile: "/avatar-profile-img.webp",
